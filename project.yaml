@@ -18,3 +18,11 @@ actions:
       moderately_sensitive:
         measure: output/measure_*_rate.csv
 
+  standardise_and_plot:
+    run: python:latest python analysis/time_series_plots.py
+    needs: [calculate_measures]
+    outputs:
+      moderately_sensitive:
+        tables: output/*_rate.csv
+        graph: output/event_count_time_series.svg
+
