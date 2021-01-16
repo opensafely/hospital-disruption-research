@@ -24,5 +24,5 @@ actions:
     outputs:
       moderately_sensitive:
         tables: output/*_rate.csv
-        graph: output/event_count_time_series.svg
+        graph: output/time_series_plot.svg
 
