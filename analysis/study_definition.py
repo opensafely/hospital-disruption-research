@@ -6,7 +6,7 @@ from cohortextractor import (
     Measure,
 )
 
-placeholder_codelist = codelist(["codes"], system="icd10")
+from codelists import *
 
 study = StudyDefinition(
     default_expectations={
@@ -71,17 +71,17 @@ study = StudyDefinition(
         ),
     ),
     CVD=patients.admitted_to_hospital(
-        with_these_diagnoses=placeholder_codelist,
+        with_these_diagnoses=cvd_codelist,
         between=["index_date", "last_day_of_month(index_date)"],
         return_expectations={"incidence": 0.05},
     ),
     respiratory_disease=patients.admitted_to_hospital(
-        with_these_diagnoses=placeholder_codelist,
+        with_these_diagnoses=resp_codelist,
         between=["index_date", "last_day_of_month(index_date)"],
         return_expectations={"incidence": 0.05},
     ),
     cancer=patients.admitted_to_hospital(
-        with_these_diagnoses=placeholder_codelist,
+        with_these_diagnoses=cancer_codelist,
         between=["index_date", "last_day_of_month(index_date)"],
         return_expectations={"incidence": 0.05},
     ),
