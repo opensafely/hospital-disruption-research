@@ -3,20 +3,20 @@
     "opensafely-icd-10-chapter-ix.csv": {
       "id": "opensafely/icd-10-chapter-ix/4868c7af",
       "url": "https://codelists.opensafely.org/codelist/opensafely/icd-10-chapter-ix/4868c7af/",
-      "downloaded_at": "2021-01-20 14:56:44.476123Z",
-      "sha": "9abcf34003807c51fba0e0452bae733d7f18026c"
+      "downloaded_at": "2021-01-21 14:53:05.855329Z",
+      "sha": "1975a5ba3c65a414f79407b61567846241b79634"
     },
     "opensafely-icd-10-chapter-x.csv": {
       "id": "opensafely/icd-10-chapter-x/2f59547a",
       "url": "https://codelists.opensafely.org/codelist/opensafely/icd-10-chapter-x/2f59547a/",
-      "downloaded_at": "2021-01-20 14:56:44.604721Z",
-      "sha": "10591a4a4780a127e1ba969e241f3225fa489b78"
+      "downloaded_at": "2021-01-21 14:53:05.957096Z",
+      "sha": "1b5266514d3b707dc073fbac53ba09e7e92fcfb3"
     },
     "opensafely-icd-10-chapter-ii.csv": {
       "id": "opensafely/icd-10-chapter-ii/77d4ee23",
       "url": "https://codelists.opensafely.org/codelist/opensafely/icd-10-chapter-ii/77d4ee23/",
-      "downloaded_at": "2021-01-20 14:56:44.783602Z",
-      "sha": "e9db46b89d989960d13814c241d56d7a37000621"
+      "downloaded_at": "2021-01-21 14:53:06.520495Z",
+      "sha": "c9e0232948887271d5e2f56b90c38d9c6334872c"
     }
   }
 }

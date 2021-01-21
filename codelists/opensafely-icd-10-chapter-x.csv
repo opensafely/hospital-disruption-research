@@ -2,291 +2,291 @@ code,term
 J00,Acute nasopharyngitis [common cold]
 J00-J06,Acute upper respiratory infections
 J01,Acute sinusitis
-J01.0,Acute maxillary sinusitis
-J01.1,Acute frontal sinusitis
-J01.2,Acute ethmoidal sinusitis
-J01.3,Acute sphenoidal sinusitis
-J01.4,Acute pansinusitis
-J01.8,Other acute sinusitis
-J01.9,"Acute sinusitis, unspecified"
+J010,Acute maxillary sinusitis
+J011,Acute frontal sinusitis
+J012,Acute ethmoidal sinusitis
+J013,Acute sphenoidal sinusitis
+J014,Acute pansinusitis
+J018,Other acute sinusitis
+J019,"Acute sinusitis, unspecified"
 J02,Acute pharyngitis
-J02.0,Streptococcal pharyngitis
-J02.8,Acute pharyngitis due to other specified organisms
-J02.9,"Acute pharyngitis, unspecified"
+J020,Streptococcal pharyngitis
+J028,Acute pharyngitis due to other specified organisms
+J029,"Acute pharyngitis, unspecified"
 J03,Acute tonsillitis
-J03.0,Streptococcal tonsillitis
-J03.8,Acute tonsillitis due to other specified organisms
-J03.9,"Acute tonsillitis, unspecified"
+J030,Streptococcal tonsillitis
+J038,Acute tonsillitis due to other specified organisms
+J039,"Acute tonsillitis, unspecified"
 J04,Acute laryngitis and tracheitis
-J04.0,Acute laryngitis
-J04.1,Acute tracheitis
-J04.2,Acute laryngotracheitis
+J040,Acute laryngitis
+J041,Acute tracheitis
+J042,Acute laryngotracheitis
 J05,Acute obstructive laryngitis [croup] and epiglottitis
-J05.0,Acute obstructive laryngitis [croup]
-J05.1,Acute epiglottitis
+J050,Acute obstructive laryngitis [croup]
+J051,Acute epiglottitis
 J06,Acute upper respiratory infections of multiple and unspecified sites
-J06.0,Acute laryngopharyngitis
-J06.8,Other acute upper respiratory infections of multiple sites
-J06.9,"Acute upper respiratory infection, unspecified"
+J060,Acute laryngopharyngitis
+J068,Other acute upper respiratory infections of multiple sites
+J069,"Acute upper respiratory infection, unspecified"
 J09,Influenza due to identified zoonotic or pandemic influenza virus
 J09-J18,Influenza and pneumonia
 J10,Influenza due to identified seasonal influenza virus
-J10.0,"Influenza with pneumonia, seasonal influenza virus identified"
-J10.1,"Influenza with other respiratory manifestations, seasonal influenza virus identified"
-J10.8,"Influenza with other manifestations, seasonal influenza virus identified"
+J100,"Influenza with pneumonia, seasonal influenza virus identified"
+J101,"Influenza with other respiratory manifestations, seasonal influenza virus identified"
+J108,"Influenza with other manifestations, seasonal influenza virus identified"
 J11,"Influenza, virus not identified"
-J11.0,"Influenza with pneumonia, virus not identified"
-J11.1,"Influenza with other respiratory manifestations, virus not identified"
-J11.8,"Influenza with other manifestations, virus not identified"
+J110,"Influenza with pneumonia, virus not identified"
+J111,"Influenza with other respiratory manifestations, virus not identified"
+J118,"Influenza with other manifestations, virus not identified"
 J12,"Viral pneumonia, not elsewhere classified"
-J12.0,Adenoviral pneumonia
-J12.1,Respiratory syncytial virus pneumonia
-J12.2,Parainfluenza virus pneumonia
-J12.3,Human metapneumovirus pneumonia
-J12.8,Other viral pneumonia
-J12.9,"Viral pneumonia, unspecified"
+J120,Adenoviral pneumonia
+J121,Respiratory syncytial virus pneumonia
+J122,Parainfluenza virus pneumonia
+J123,Human metapneumovirus pneumonia
+J128,Other viral pneumonia
+J129,"Viral pneumonia, unspecified"
 J13,Pneumonia due to Streptococcus pneumoniae
 J14,Pneumonia due to Haemophilus influenzae
 J15,"Bacterial pneumonia, not elsewhere classified"
-J15.0,Pneumonia due to Klebsiella pneumoniae
-J15.1,Pneumonia due to Pseudomonas
-J15.2,Pneumonia due to staphylococcus
-J15.3,"Pneumonia due to streptococcus, group B"
-J15.4,Pneumonia due to other streptococci
-J15.5,Pneumonia due to Escherichia coli
-J15.6,Pneumonia due to other Gram-negative bacteria
-J15.7,Pneumonia due to Mycoplasma pneumoniae
-J15.8,Other bacterial pneumonia
-J15.9,"Bacterial pneumonia, unspecified"
+J150,Pneumonia due to Klebsiella pneumoniae
+J151,Pneumonia due to Pseudomonas
+J152,Pneumonia due to staphylococcus
+J153,"Pneumonia due to streptococcus, group B"
+J154,Pneumonia due to other streptococci
+J155,Pneumonia due to Escherichia coli
+J156,Pneumonia due to other Gram-negative bacteria
+J157,Pneumonia due to Mycoplasma pneumoniae
+J158,Other bacterial pneumonia
+J159,"Bacterial pneumonia, unspecified"
 J16,"Pneumonia due to other infectious organisms, not elsewhere classified"
-J16.0,Chlamydial pneumonia
-J16.8,Pneumonia due to other specified infectious organisms
+J160,Chlamydial pneumonia
+J168,Pneumonia due to other specified infectious organisms
 J17,Pneumonia in diseases classified elsewhere
-J17.0,Pneumonia in bacterial diseases classified elsewhere
-J17.1,Pneumonia in viral diseases classified elsewhere
-J17.2,Pneumonia in mycoses
-J17.3,Pneumonia in parasitic diseases
-J17.8,Pneumonia in other diseases classified elsewhere
+J170,Pneumonia in bacterial diseases classified elsewhere
+J171,Pneumonia in viral diseases classified elsewhere
+J172,Pneumonia in mycoses
+J173,Pneumonia in parasitic diseases
+J178,Pneumonia in other diseases classified elsewhere
 J18,"Pneumonia, organism unspecified"
-J18.0,"Bronchopneumonia, unspecified"
-J18.1,"Lobar pneumonia, unspecified"
-J18.2,"Hypostatic pneumonia, unspecified"
-J18.8,"Other pneumonia, organism unspecified"
-J18.9,"Pneumonia, unspecified"
+J180,"Bronchopneumonia, unspecified"
+J181,"Lobar pneumonia, unspecified"
+J182,"Hypostatic pneumonia, unspecified"
+J188,"Other pneumonia, organism unspecified"
+J189,"Pneumonia, unspecified"
 J20,Acute bronchitis
 J20-J22,Other acute lower respiratory infections
-J20.0,Acute bronchitis due to Mycoplasma pneumoniae
-J20.1,Acute bronchitis due to Haemophilus influenzae
-J20.2,Acute bronchitis due to streptococcus
-J20.3,Acute bronchitis due to coxsackievirus
-J20.4,Acute bronchitis due to parainfluenza virus
-J20.5,Acute bronchitis due to respiratory syncytial virus
-J20.6,Acute bronchitis due to rhinovirus
-J20.7,Acute bronchitis due to echovirus
-J20.8,Acute bronchitis due to other specified organisms
-J20.9,"Acute bronchitis, unspecified"
+J200,Acute bronchitis due to Mycoplasma pneumoniae
+J201,Acute bronchitis due to Haemophilus influenzae
+J202,Acute bronchitis due to streptococcus
+J203,Acute bronchitis due to coxsackievirus
+J204,Acute bronchitis due to parainfluenza virus
+J205,Acute bronchitis due to respiratory syncytial virus
+J206,Acute bronchitis due to rhinovirus
+J207,Acute bronchitis due to echovirus
+J208,Acute bronchitis due to other specified organisms
+J209,"Acute bronchitis, unspecified"
 J21,Acute bronchiolitis
-J21.0,Acute bronchiolitis due to respiratory syncytial virus
-J21.1,Acute bronchiolitis due to human metapneumovirus
-J21.8,Acute bronchiolitis due to other specified organisms
-J21.9,"Acute bronchiolitis, unspecified"
+J210,Acute bronchiolitis due to respiratory syncytial virus
+J211,Acute bronchiolitis due to human metapneumovirus
+J218,Acute bronchiolitis due to other specified organisms
+J219,"Acute bronchiolitis, unspecified"
 J22,Unspecified acute lower respiratory infection
 J30,Vasomotor and allergic rhinitis
 J30-J39,Other diseases of upper respiratory tract
-J30.0,Vasomotor rhinitis
-J30.1,Allergic rhinitis due to pollen
-J30.2,Other seasonal allergic rhinitis
-J30.3,Other allergic rhinitis
-J30.4,"Allergic rhinitis, unspecified"
+J300,Vasomotor rhinitis
+J301,Allergic rhinitis due to pollen
+J302,Other seasonal allergic rhinitis
+J303,Other allergic rhinitis
+J304,"Allergic rhinitis, unspecified"
 J31,"Chronic rhinitis, nasopharyngitis and pharyngitis"
-J31.0,Chronic rhinitis
-J31.1,Chronic nasopharyngitis
-J31.2,Chronic pharyngitis
+J310,Chronic rhinitis
+J311,Chronic nasopharyngitis
+J312,Chronic pharyngitis
 J32,Chronic sinusitis
-J32.0,Chronic maxillary sinusitis
-J32.1,Chronic frontal sinusitis
-J32.2,Chronic ethmoidal sinusitis
-J32.3,Chronic sphenoidal sinusitis
-J32.4,Chronic pansinusitis
-J32.8,Other chronic sinusitis
-J32.9,"Chronic sinusitis, unspecified"
+J320,Chronic maxillary sinusitis
+J321,Chronic frontal sinusitis
+J322,Chronic ethmoidal sinusitis
+J323,Chronic sphenoidal sinusitis
+J324,Chronic pansinusitis
+J328,Other chronic sinusitis
+J329,"Chronic sinusitis, unspecified"
 J33,Nasal polyp
-J33.0,Polyp of nasal cavity
-J33.1,Polypoid sinus degeneration
-J33.8,Other polyp of sinus
-J33.9,"Nasal polyp, unspecified"
+J330,Polyp of nasal cavity
+J331,Polypoid sinus degeneration
+J338,Other polyp of sinus
+J339,"Nasal polyp, unspecified"
 J34,Other disorders of nose and nasal sinuses
-J34.0,"Abscess, furuncle and carbuncle of nose"
-J34.1,Cyst and mucocele of nose and nasal sinus
-J34.2,Deviated nasal septum
-J34.3,Hypertrophy of nasal turbinates
-J34.8,Other specified disorders of nose and nasal sinuses
+J340,"Abscess, furuncle and carbuncle of nose"
+J341,Cyst and mucocele of nose and nasal sinus
+J342,Deviated nasal septum
+J343,Hypertrophy of nasal turbinates
+J348,Other specified disorders of nose and nasal sinuses
 J35,Chronic diseases of tonsils and adenoids
-J35.0,Chronic tonsillitis
-J35.1,Hypertrophy of tonsils
-J35.2,Hypertrophy of adenoids
-J35.3,Hypertrophy of tonsils with hypertrophy of adenoids
-J35.8,Other chronic diseases of tonsils and adenoids
-J35.9,"Chronic disease of tonsils and adenoids, unspecified"
+J350,Chronic tonsillitis
+J351,Hypertrophy of tonsils
+J352,Hypertrophy of adenoids
+J353,Hypertrophy of tonsils with hypertrophy of adenoids
+J358,Other chronic diseases of tonsils and adenoids
+J359,"Chronic disease of tonsils and adenoids, unspecified"
 J36,Peritonsillar abscess
 J37,Chronic laryngitis and laryngotracheitis
-J37.0,Chronic laryngitis
-J37.1,Chronic laryngotracheitis
+J370,Chronic laryngitis
+J371,Chronic laryngotracheitis
 J38,"Diseases of vocal cords and larynx, not elsewhere classified"
-J38.0,Paralysis of vocal cords and larynx
-J38.1,Polyp of vocal cord and larynx
-J38.2,Nodules of vocal cords
-J38.3,Other diseases of vocal cords
-J38.4,Oedema of larynx
-J38.5,Laryngeal spasm
-J38.6,Stenosis of larynx
-J38.7,Other diseases of larynx
+J380,Paralysis of vocal cords and larynx
+J381,Polyp of vocal cord and larynx
+J382,Nodules of vocal cords
+J383,Other diseases of vocal cords
+J384,Oedema of larynx
+J385,Laryngeal spasm
+J386,Stenosis of larynx
+J387,Other diseases of larynx
 J39,Other diseases of upper respiratory tract
-J39.0,Retropharyngeal and parapharyngeal abscess
-J39.1,Other abscess of pharynx
-J39.2,Other diseases of pharynx
-J39.3,"Upper respiratory tract hypersensitivity reaction, site unspecified"
-J39.8,Other specified diseases of upper respiratory tract
-J39.9,"Disease of upper respiratory tract, unspecified"
+J390,Retropharyngeal and parapharyngeal abscess
+J391,Other abscess of pharynx
+J392,Other diseases of pharynx
+J393,"Upper respiratory tract hypersensitivity reaction, site unspecified"
+J398,Other specified diseases of upper respiratory tract
+J399,"Disease of upper respiratory tract, unspecified"
 J40,"Bronchitis, not specified as acute or chronic"
 J40-J47,Chronic lower respiratory diseases
 J41,Simple and mucopurulent chronic bronchitis
-J41.0,Simple chronic bronchitis
-J41.1,Mucopurulent chronic bronchitis
-J41.8,Mixed simple and mucopurulent chronic bronchitis
+J410,Simple chronic bronchitis
+J411,Mucopurulent chronic bronchitis
+J418,Mixed simple and mucopurulent chronic bronchitis
 J42,Unspecified chronic bronchitis
 J43,Emphysema
-J43.0,MacLeod syndrome
-J43.1,Panlobular emphysema
-J43.2,Centrilobular emphysema
-J43.8,Other emphysema
-J43.9,"Emphysema, unspecified"
+J430,MacLeod syndrome
+J431,Panlobular emphysema
+J432,Centrilobular emphysema
+J438,Other emphysema
+J439,"Emphysema, unspecified"
 J44,Other chronic obstructive pulmonary disease
-J44.0,Chronic obstructive pulmonary disease with acute lower respiratory infection
-J44.1,"Chronic obstructive pulmonary disease with acute exacerbation, unspecified"
-J44.8,Other specified chronic obstructive pulmonary disease
-J44.9,"Chronic obstructive pulmonary disease, unspecified"
+J440,Chronic obstructive pulmonary disease with acute lower respiratory infection
+J441,"Chronic obstructive pulmonary disease with acute exacerbation, unspecified"
+J448,Other specified chronic obstructive pulmonary disease
+J449,"Chronic obstructive pulmonary disease, unspecified"
 J45,Asthma
-J45.0,Predominantly allergic asthma
-J45.1,Nonallergic asthma
-J45.8,Mixed asthma
-J45.9,"Asthma, unspecified"
+J450,Predominantly allergic asthma
+J451,Nonallergic asthma
+J458,Mixed asthma
+J459,"Asthma, unspecified"
 J46,Status asthmaticus
 J47,Bronchiectasis
 J60,Coalworker pneumoconiosis
 J60-J70,Lung diseases due to external agents
 J61,Pneumoconiosis due to asbestos and other mineral fibres
 J62,Pneumoconiosis due to dust containing silica
-J62.0,Pneumoconiosis due to talc dust
-J62.8,Pneumoconiosis due to other dust containing silica
+J620,Pneumoconiosis due to talc dust
+J628,Pneumoconiosis due to other dust containing silica
 J63,Pneumoconiosis due to other inorganic dusts
-J63.0,Aluminosis (of lung)
-J63.1,Bauxite fibrosis (of lung)
-J63.2,Berylliosis
-J63.3,Graphite fibrosis (of lung)
-J63.4,Siderosis
-J63.5,Stannosis
-J63.8,Pneumoconiosis due to other specified inorganic dusts
+J630,Aluminosis (of lung)
+J631,Bauxite fibrosis (of lung)
+J632,Berylliosis
+J633,Graphite fibrosis (of lung)
+J634,Siderosis
+J635,Stannosis
+J638,Pneumoconiosis due to other specified inorganic dusts
 J64,Unspecified pneumoconiosis
 J65,Pneumoconiosis associated with tuberculosis
 J66,Airway disease due to specific organic dust
-J66.0,Byssinosis
-J66.1,Flax-dresser disease
-J66.2,Cannabinosis
-J66.8,Airway disease due to other specific organic dusts
+J660,Byssinosis
+J661,Flax-dresser disease
+J662,Cannabinosis
+J668,Airway disease due to other specific organic dusts
 J67,Hypersensitivity pneumonitis due to organic dust
-J67.0,Farmer lung
-J67.1,Bagassosis
-J67.2,Bird fancier lung
-J67.3,Suberosis
-J67.4,Maltworker lung
-J67.5,Mushroom-worker lung
-J67.6,Maple-bark-stripper lung
-J67.7,Air-conditioner and humidifier lung
-J67.8,Hypersensitivity pneumonitis due to other organic dusts
-J67.9,Hypersensitivity pneumonitis due to unspecified organic dust
+J670,Farmer lung
+J671,Bagassosis
+J672,Bird fancier lung
+J673,Suberosis
+J674,Maltworker lung
+J675,Mushroom-worker lung
+J676,Maple-bark-stripper lung
+J677,Air-conditioner and humidifier lung
+J678,Hypersensitivity pneumonitis due to other organic dusts
+J679,Hypersensitivity pneumonitis due to unspecified organic dust
 J68,"Respiratory conditions due to inhalation of chemicals, gases, fumes and vapours"
-J68.0,"Bronchitis and pneumonitis due to chemicals, gases, fumes and vapours"
-J68.1,"Pulmonary oedema due to chemicals, gases, fumes and vapours"
-J68.2,"Upper respiratory inflammation due to chemicals, gases, fumes and vapours, not elsewhere classified"
-J68.3,"Other acute and subacute respiratory conditions due to chemicals, gases, fumes and vapours"
-J68.4,"Chronic respiratory conditions due to chemicals, gases, fumes and vapours"
-J68.8,"Other respiratory conditions due to chemicals, gases, fumes and vapours"
-J68.9,"Unspecified respiratory condition due to chemicals, gases, fumes and vapours"
+J680,"Bronchitis and pneumonitis due to chemicals, gases, fumes and vapours"
+J681,"Pulmonary oedema due to chemicals, gases, fumes and vapours"
+J682,"Upper respiratory inflammation due to chemicals, gases, fumes and vapours, not elsewhere classified"
+J683,"Other acute and subacute respiratory conditions due to chemicals, gases, fumes and vapours"
+J684,"Chronic respiratory conditions due to chemicals, gases, fumes and vapours"
+J688,"Other respiratory conditions due to chemicals, gases, fumes and vapours"
+J689,"Unspecified respiratory condition due to chemicals, gases, fumes and vapours"
 J69,Pneumonitis due to solids and liquids
-J69.0,Pneumonitis due to food and vomit
-J69.1,Pneumonitis due to oils and essences
-J69.8,Pneumonitis due to other solids and liquids
+J690,Pneumonitis due to food and vomit
+J691,Pneumonitis due to oils and essences
+J698,Pneumonitis due to other solids and liquids
 J70,Respiratory conditions due to other external agents
-J70.0,Acute pulmonary manifestations due to radiation
-J70.1,Chronic and other pulmonary manifestations due to radiation
-J70.2,Acute drug-induced interstitial lung disorders
-J70.3,Chronic drug-induced interstitial lung disorders
-J70.4,"Drug-induced interstitial lung disorders, unspecified"
-J70.8,Respiratory conditions due to other specified external agents
-J70.9,Respiratory conditions due to unspecified external agent
+J700,Acute pulmonary manifestations due to radiation
+J701,Chronic and other pulmonary manifestations due to radiation
+J702,Acute drug-induced interstitial lung disorders
+J703,Chronic drug-induced interstitial lung disorders
+J704,"Drug-induced interstitial lung disorders, unspecified"
+J708,Respiratory conditions due to other specified external agents
+J709,Respiratory conditions due to unspecified external agent
 J80,Adult respiratory distress syndrome
 J80-J84,Other respiratory diseases principally affecting the interstitium
 J81,Pulmonary oedema
 J82,"Pulmonary eosinophilia, not elsewhere classified"
 J84,Other interstitial pulmonary diseases
-J84.0,Alveolar and parietoalveolar conditions
-J84.1,Other interstitial pulmonary diseases with fibrosis
-J84.8,Other specified interstitial pulmonary diseases
-J84.9,"Interstitial pulmonary disease, unspecified"
+J840,Alveolar and parietoalveolar conditions
+J841,Other interstitial pulmonary diseases with fibrosis
+J848,Other specified interstitial pulmonary diseases
+J849,"Interstitial pulmonary disease, unspecified"
 J85,Abscess of lung and mediastinum
 J85-J86,Suppurative and necrotic conditions of lower respiratory tract
-J85.0,Gangrene and necrosis of lung
-J85.1,Abscess of lung with pneumonia
-J85.2,Abscess of lung without pneumonia
-J85.3,Abscess of mediastinum
+J850,Gangrene and necrosis of lung
+J851,Abscess of lung with pneumonia
+J852,Abscess of lung without pneumonia
+J853,Abscess of mediastinum
 J86,Pyothorax
-J86.0,Pyothorax with fistula
-J86.9,Pyothorax without fistula
+J860,Pyothorax with fistula
+J869,Pyothorax without fistula
 J90,"Pleural effusion, not elsewhere classified"
 J90-J94,Other diseases of pleura
 J91,Pleural effusion in conditions classified elsewhere
 J92,Pleural plaque
-J92.0,Pleural plaque with presence of asbestos
-J92.9,Pleural plaque without asbestos
+J920,Pleural plaque with presence of asbestos
+J929,Pleural plaque without asbestos
 J93,Pneumothorax
-J93.0,Spontaneous tension pneumothorax
-J93.1,Other spontaneous pneumothorax
-J93.8,Other pneumothorax
-J93.9,"Pneumothorax, unspecified"
+J930,Spontaneous tension pneumothorax
+J931,Other spontaneous pneumothorax
+J938,Other pneumothorax
+J939,"Pneumothorax, unspecified"
 J94,Other pleural conditions
-J94.0,Chylous effusion
-J94.1,Fibrothorax
-J94.2,Haemothorax
-J94.8,Other specified pleural conditions
-J94.9,"Pleural condition, unspecified"
+J940,Chylous effusion
+J941,Fibrothorax
+J942,Haemothorax
+J948,Other specified pleural conditions
+J949,"Pleural condition, unspecified"
 J95,"Postprocedural respiratory disorders, not elsewhere classified"
 J95-J99,Other diseases of the respiratory system
-J95.0,Tracheostomy malfunction
-J95.1,Acute pulmonary insufficiency following thoracic surgery
-J95.2,Acute pulmonary insufficiency following nonthoracic surgery
-J95.3,Chronic pulmonary insufficiency following surgery
-J95.4,Mendelson syndrome
-J95.5,Postprocedural subglottic stenosis
-J95.8,Other postprocedural respiratory disorders
-J95.9,"Postprocedural respiratory disorder, unspecified"
+J950,Tracheostomy malfunction
+J951,Acute pulmonary insufficiency following thoracic surgery
+J952,Acute pulmonary insufficiency following nonthoracic surgery
+J953,Chronic pulmonary insufficiency following surgery
+J954,Mendelson syndrome
+J955,Postprocedural subglottic stenosis
+J958,Other postprocedural respiratory disorders
+J959,"Postprocedural respiratory disorder, unspecified"
 J96,"Respiratory failure, not elsewhere classified"
-J96.0,Acute respiratory failure
-J96.1,Chronic respiratory failure
-J96.9,"Respiratory failure, unspecified"
+J960,Acute respiratory failure
+J961,Chronic respiratory failure
+J969,"Respiratory failure, unspecified"
 J98,Other respiratory disorders
-J98.0,"Diseases of bronchus, not elsewhere classified"
-J98.1,Pulmonary collapse
-J98.2,Interstitial emphysema
-J98.3,Compensatory emphysema
-J98.4,Other disorders of lung
-J98.5,"Diseases of mediastinum, not elsewhere classified"
-J98.6,Disorders of diaphragm
-J98.7,"Respiratory infections, not elsewhere classified"
-J98.8,Other specified respiratory disorders
-J98.9,"Respiratory disorder, unspecified"
+J980,"Diseases of bronchus, not elsewhere classified"
+J981,Pulmonary collapse
+J982,Interstitial emphysema
+J983,Compensatory emphysema
+J984,Other disorders of lung
+J985,"Diseases of mediastinum, not elsewhere classified"
+J986,Disorders of diaphragm
+J987,"Respiratory infections, not elsewhere classified"
+J988,Other specified respiratory disorders
+J989,"Respiratory disorder, unspecified"
 J99,Respiratory disorders in diseases classified elsewhere
-J99.0,Rheumatoid lung disease M05.1
-J99.1,Respiratory disorders in other diffuse connective tissue disorders
-J99.8,Respiratory disorders in other diseases classified elsewhere
+J990,Rheumatoid lung disease M05.1
+J991,Respiratory disorders in other diffuse connective tissue disorders
+J998,Respiratory disorders in other diseases classified elsewhere
 X,Diseases of the respiratory system
