@@ -72,17 +72,17 @@ study = StudyDefinition(
     ),
     CVD=patients.admitted_to_hospital(
         with_these_diagnoses=cvd_codelist,
-        between=["index_date", "last_day_of_month(index_date)"],
+        between=["index_date", "index_date + 6 days"],
         return_expectations={"incidence": 0.05},
     ),
     respiratory_disease=patients.admitted_to_hospital(
         with_these_diagnoses=resp_codelist,
-        between=["index_date", "last_day_of_month(index_date)"],
+        between=["index_date", "index_date + 6 days"],
         return_expectations={"incidence": 0.05},
     ),
     cancer=patients.admitted_to_hospital(
         with_these_diagnoses=cancer_codelist,
-        between=["index_date", "last_day_of_month(index_date)"],
+        between=["index_date", "index_date + 6 days"],
         return_expectations={"incidence": 0.05},
     ),
 )
