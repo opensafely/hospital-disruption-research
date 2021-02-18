@@ -17,6 +17,12 @@
       "url": "https://codelists.opensafely.org/codelist/opensafely/icd-10-chapter-ii/77d4ee23/",
       "downloaded_at": "2021-01-21 14:53:06.520495Z",
       "sha": "c9e0232948887271d5e2f56b90c38d9c6334872c"
+    },
+    "opensafely-ethnicity.csv": {
+      "id": "opensafely/ethnicity/2020-04-27",
+      "url": "https://codelists.opensafely.org/codelist/opensafely/ethnicity/2020-04-27/",
+      "downloaded_at": "2021-02-18 10:45:26.048950Z",
+      "sha": "3d2f3998b71863a80b24d60f6f4282e14191ae13"
     }
   }
 }
