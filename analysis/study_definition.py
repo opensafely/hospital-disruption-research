@@ -17,6 +17,24 @@ study = StudyDefinition(
     population=patients.registered_with_one_practice_between(
         "index_date", "index_date"
     ),
+
+    region=patients.registered_practice_as_of(
+        "index_date",
+        returning="nuts1_region_name",
+        return_expectations={"category": {"ratios": {
+            "North East": 0.1,
+            "North West": 0.1,
+            "Yorkshire and the Humber": 0.1,
+            "East Midlands": 0.1,
+            "West Midlands": 0.1,
+            "East of England": 0.1,
+            "London": 0.2,
+            "South East": 0.2, }},
+            "incidence": 0.8}
+    ),
+
+    
+
     AgeGroup=patients.categorised_as(
         {
             "0-4": "age >= 0 AND age < 5",
@@ -93,18 +111,18 @@ measures = [
         id="CVD_rate",
         numerator="CVD",
         denominator="population",
-        group_by=["AgeGroup"],
+        group_by=["AgeGroup", "region", "ethnicity", "imd"],
     ),
     Measure(
         id="respiratory_disease_rate",
         numerator="respiratory_disease",
         denominator="population",
-        group_by=["AgeGroup"],
+        group_by=["AgeGroup", "region", "ethnicity", "imd"],
     ),
     Measure(
         id="cancer_rate",
         numerator="cancer",
         denominator="population",
-        group_by=["AgeGroup"],
+        group_by=["AgeGroup", "region", "ethnicity", "imd"],
     ),
 ]

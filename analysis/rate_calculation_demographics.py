@@ -14,16 +14,6 @@ standard_pop = standard_pop.set_index("AgeGroup")["EuropeanStandardPopulation"]
 standard_pop = standard_pop / standard_pop.sum()
 
 
-def get_data():
-    p = f"output/measure_{m.id}.csv"
-    by_age = pd.read_csv(
-        p, usecols=["date", m.numerator, m.denominator] + m.group_by)
-    by_age["date"] = pd.to_datetime(by_age["date"])
-    by_age = by_age.set_index(["date"] + m.group_by)
-    totals = by_age.groupby("date").sum()
-    return by_age, totals
-
-
 def calculate_rates(df):
     rates = (df[m.numerator] / df[m.denominator]) * 100000
     return rates.round()
@@ -32,8 +22,24 @@ def calculate_rates(df):
 def standardise_rates(by_age):
     rates = calculate_rates(by_age)
     standardised_rates = rates * standard_pop
-    standardised_totals = standardised_rates.groupby("date").sum()
+    standardised_totals = standardised_rates.groupby(
+        ["date", "region", "ethnicity", "imd"]).sum()
     return standardised_totals
+
+
+def get_data():
+    p = f"output/measure_{m.id}_demographics.csv"
+    by_age = pd.read_csv(
+        p, usecols=["date", m.numerator, m.denominator] + m.group_by)
+    by_age["date"] = pd.to_datetime(by_age["date"])
+    return by_age
+
+
+def standardise_rates_apply(by_age_row):
+    row_age_group = by_age_row['AgeGroup']
+    row_standardised_rate = by_age_row['age_rates'] * \
+        standard_pop[row_age_group]
+    return row_standardised_rate
 
 
 def redact_small_numbers(df):
@@ -45,18 +51,18 @@ def redact_small_numbers(df):
 
 
 def make_table():
-    by_age, totals = get_data()
-    rates = calculate_rates(totals)
-    rates.name = "Crude rate per 100,000 population"
-    standardised_rates = standardise_rates(by_age)
-    standardised_rates.name = "European Standard population rate per 100,000"
-    df = pd.concat([totals, rates, standardised_rates], axis=1)
-    df = redact_small_numbers(df)
-    return df
-
+    by_age = get_data()
+    by_age['age_rates'] = calculate_rates(by_age)
+    by_age["European Standard population rate per 100,000"] = by_age.apply(
+        standardise_rates_apply, axis=1)
+    by_age.drop(['age_rates'], axis=1, inplace=True)
+    standardised_totals = by_age.groupby(
+        ["date", "region", "ethnicity", "imd"]).sum().reset_index()
+    standardised_totals = redact_small_numbers(standardised_totals)
+    return standardised_totals
 
 time_series = []
 for m in measures:
     df = make_table()
     df.to_csv(f"output/{m.id}.csv")
-    time_series.append(df.drop(columns=[m.numerator, m.denominator]))
+    time_series.append(df)
