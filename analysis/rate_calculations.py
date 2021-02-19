@@ -16,8 +16,7 @@ standard_pop = standard_pop / standard_pop.sum()
 
 def get_data():
     p = f"output/measure_{m.id}.csv"
-    by_age = pd.read_csv(
-        p, usecols=["date", m.numerator, m.denominator] + m.group_by)
+    by_age = pd.read_csv(p, usecols=["date", m.numerator, m.denominator] + m.group_by)
     by_age["date"] = pd.to_datetime(by_age["date"])
     by_age = by_age.set_index(["date"] + m.group_by)
     totals = by_age.groupby("date").sum()
