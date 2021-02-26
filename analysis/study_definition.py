@@ -190,11 +190,3 @@ measures = [
     ),
 ]
 
-
-
-Measure(
-        id="cancer_rate",
-        numerator="cancer",
-        denominator="population",
-        group_by=["AgeGroup", "region", "ethnicity", "imd"],
-    ),

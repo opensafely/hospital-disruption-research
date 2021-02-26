@@ -13,7 +13,7 @@ study = StudyDefinition(
         "date": {"earliest": "1900-01-01", "latest": "today"},
         "rate": "uniform",
     },
-    index_date="2020-01-03",
+    index_date="2020-01-01",
     population=patients.registered_with_one_practice_between(
         "index_date", "index_date"
     ),
