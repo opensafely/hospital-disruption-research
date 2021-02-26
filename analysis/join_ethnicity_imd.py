@@ -2,8 +2,7 @@ import pandas as pd
 import os
 
 
-ethnicity_df = pd.read_csv('output/input_ethnicity.csv')
-imd_df = pd.read_csv('output/input_imd.csv')
+ethnicity_imd_df = pd.read_csv('output/input_imd_ethnicity.csv')
 
 
 for file in os.listdir('output'):

@@ -6,17 +6,12 @@ expectations:
 actions:
 
 
-  generate_cohort_ethnicity:
-    run: cohortextractor:latest generate_cohort --study-definition study_definition_ethnicity
+  generate_cohort_imd_ethnicity:
+    run: cohortextractor:latest generate_cohort --study-definition study_definition_imd_ethnicity
     outputs:
       highly_sensitive:
-        cohort: output/input_ethnicity.csv
+        cohort: output/input_imd_ethnicity.csv
   
-  generate_cohort_imd:
-    run: cohortextractor:latest generate_cohort --study-definition study_definition_imd
-    outputs:
-      highly_sensitive:
-        cohort: output/input_imd.csv
 
   generate_cohort_1:
     # week 1 2019 to 21 2019 inclusive
@@ -55,7 +50,7 @@ actions:
 
   join_ethnicity_imd:
     run: python:latest python analysis/join_ethnicity_imd.py
-    needs: [generate_cohort_1, generate_cohort_2, generate_cohort_3, generate_cohort_4, generate_cohort_5, generate_cohort_ethnicity, generate_cohort_imd]
+    needs: [generate_cohort_1, generate_cohort_2, generate_cohort_3, generate_cohort_4, generate_cohort_5, generate_cohort_imd_ethnicity]
     outputs:
       highly_sensitive:
         cohort: output/i*.csv
