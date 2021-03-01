@@ -1,23 +1,27 @@
 import matplotlib.pyplot as plt
 from rate_calculation_demographics import time_series, measures
 
-
+diseases = ["CVD", "respiratory_disease", "cancer"]
 demographic_variables = ["region", "ethnicity", "imd"]
 
-for i, df in enumerate(time_series):
-    disease = measures[i].numerator
+for disease in diseases:
+    df_dict = time_series[disease]
+    
+    
+
 
 
 
     fig, axes = plt.subplots(len(demographic_variables), figsize=[10, 12])
 
     for i, variable in enumerate(demographic_variables):
-        df_grouped = df.groupby(["date", variable])[
-            "European Standard population rate per 100,000"].mean().reset_index()
+        df = df_dict[variable]
+        
 
         for x in df[variable].unique():
             df_subset = df[df[variable] == x]
-            df_subset.sort_values(by="date", inplace=True)
+            df_subset = df_subset.sort_values(by="date")
+           
 
             axes[i].plot(
                 df_subset["date"], df_subset["European Standard population rate per 100,000"], label=x)
@@ -30,5 +34,5 @@ for i, df in enumerate(time_series):
             axes[i].set_ylabel("Rate per 100,000 people")
             axes[i].set_ylim(ymin=0)
             plt.tight_layout()
-
+  
     plt.savefig(f"output/time_series_plot_{disease}.svg")

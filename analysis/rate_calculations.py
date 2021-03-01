@@ -56,6 +56,7 @@ def make_table():
 
 time_series = []
 for m in measures:
-    df = make_table()
-    df.to_csv(f"output/{m.id}.csv")
-    time_series.append(df.drop(columns=[m.numerator, m.denominator]))
+    if len(m.group_by) ==1:
+        df = make_table()
+        df.to_csv(f"output/{m.id}.csv")
+        time_series.append(df.drop(columns=[m.numerator, m.denominator]))

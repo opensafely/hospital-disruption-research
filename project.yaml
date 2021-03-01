@@ -67,7 +67,7 @@ actions:
     needs: [join_ethnicity_imd]
     outputs:
       moderately_sensitive:
-        csvs: output/measure_*_rate_demographics.csv
+        csvs: output/measure_*_rate_*.csv
         
 
   standardise_and_plot:

@@ -108,7 +108,7 @@ study = StudyDefinition(
 
 measures = [
     Measure(
-        id="CVD_rate_age",
+        id="CVD_rate",
         numerator="CVD",
         denominator="population",
         group_by=["AgeGroup"],
@@ -118,25 +118,25 @@ measures = [
         id="CVD_rate_region",
         numerator="CVD",
         denominator="population",
-        group_by=["region"],
+        group_by=["AgeGroup", "region"],
     ),
     Measure(
         id="CVD_rate_ethnicity",
         numerator="CVD",
         denominator="population",
-        group_by=["ethnicity"],
+        group_by=["AgeGroup", "ethnicity"],
     ),
     Measure(
         id="CVD_rate_imd",
         numerator="CVD",
         denominator="population",
-        group_by=["imd"],
+        group_by=["AgeGroup", "imd"],
     ),
 
 
 
     Measure(
-        id="respiratory_disease_rate_age",
+        id="respiratory_disease_rate",
         numerator="respiratory_disease",
         denominator="population",
         group_by=["AgeGroup"],
@@ -146,25 +146,25 @@ measures = [
         id="respiratory_disease_rate_region",
         numerator="respiratory_disease",
         denominator="population",
-        group_by=["region"],
+        group_by=["AgeGroup", "region"],
     ),
 
     Measure(
         id="respiratory_disease_rate_ethnicity",
         numerator="respiratory_disease",
         denominator="population",
-        group_by=["ethnicity"],
+        group_by=["AgeGroup", "ethnicity"],
     ),
 
     Measure(
         id="respiratory_disease_rate_imd",
         numerator="respiratory_disease",
         denominator="population",
-        group_by=["imd"],
+        group_by=["AgeGroup", "imd"],
     ),
 
     Measure(
-        id="cancer_rate_age",
+        id="cancer_rate",
         numerator="cancer",
         denominator="population",
         group_by=["AgeGroup"],
@@ -174,19 +174,19 @@ measures = [
         id="cancer_rate_region",
         numerator="cancer",
         denominator="population",
-        group_by=["region"],
+        group_by=["AgeGroup", "region"],
     ),
     Measure(
         id="cancer_rate_ethnicity",
         numerator="cancer",
         denominator="population",
-        group_by=["ethnicity"],
+        group_by=["AgeGroup", "ethnicity"],
     ),
     Measure(
         id="cancer_rate_imd",
         numerator="cancer",
         denominator="population",
-        group_by=["imd"],
+        group_by=["AgeGroup", "imd"],
     ),
 ]
 
