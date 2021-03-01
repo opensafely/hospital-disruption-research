@@ -1,9 +1,17 @@
 version: '3.0'
 
 expectations:
-  population_size: 500
+  population_size: 10000
 
 actions:
+
+
+  generate_cohort_imd_ethnicity:
+    run: cohortextractor:latest generate_cohort --study-definition study_definition_imd_ethnicity
+    outputs:
+      highly_sensitive:
+        cohort: output/input_imd_ethnicity.csv
+  
 
   generate_cohort_1:
     # week 1 2019 to 21 2019 inclusive
@@ -40,12 +48,27 @@ actions:
       highly_sensitive:
         cohort: output/in*.csv
 
+  join_ethnicity_imd:
+    run: python:latest python analysis/join_ethnicity_imd.py
+    needs: [generate_cohort_1, generate_cohort_2, generate_cohort_3, generate_cohort_4, generate_cohort_5, generate_cohort_imd_ethnicity]
+    outputs:
+      highly_sensitive:
+        cohort: output/i*.csv
+   
   calculate_measures:
     run: cohortextractor:latest generate_measures --study-definition study_definition
-    needs: [generate_cohort_1, generate_cohort_2, generate_cohort_3, generate_cohort_4, generate_cohort_5]
+    needs: [join_ethnicity_imd]
     outputs:
       moderately_sensitive:
         measure: output/measure_*_rate.csv
+
+  calculate_measures_demographics:
+    run: python:latest python analysis/generate_measures_demographics.py
+    needs: [join_ethnicity_imd]
+    outputs:
+      moderately_sensitive:
+        csvs: output/measure_*_rate_*.csv
+        
 
   standardise_and_plot:
     run: python:latest python analysis/time_series_plots.py
@@ -54,4 +77,12 @@ actions:
       moderately_sensitive:
         tables: output/*_rate.csv
         graph: output/time_series_plot.svg
+
+  standardise_and_plot_demographics:
+    run: python:latest python analysis/time_series_plots_demographics.py
+    needs: [calculate_measures_demographics]
+    outputs:
+      moderately_sensitive:
+        graph: output/time_series_plot_*.svg
+
 

@@ -25,3 +25,11 @@ cancer_codelist = codelist_from_csv(
     system="icd10",
     column="code",
 )
+
+#https://codelists.opensafely.org/codelist/opensafely/ethnicity/2020-04-27/
+ethnicity_codes = codelist_from_csv(
+        "codelists/opensafely-ethnicity.csv",
+        system="ctv3",
+        column="Code",
+        category_column="Grouping_6",
+    )
