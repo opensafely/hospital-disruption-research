@@ -1,5 +1,6 @@
 import matplotlib.pyplot as plt
 from rate_calculation_demographics import time_series, measures
+import pandas as pd
 
 diseases = ["CVD", "respiratory_disease", "cancer"]
 demographic_variables = ["region", "ethnicity", "imd"]
