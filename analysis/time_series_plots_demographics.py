@@ -21,8 +21,8 @@ for disease in diseases:
         #if imd qcut
         if variable == "imd":
             
-           
-            df[variable] = pd.qcut(imd_column, q=5,duplicates="drop")
+            imd_column = df["imd"]
+            df["imd"] = pd.qcut(imd_column, q=5,duplicates="drop")
         
             df = df.groupby(by=["date", variable])["European Standard population rate per 100,000"].mean().reset_index()
             
