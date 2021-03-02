@@ -55,7 +55,7 @@ def make_table(demographic_var):
     by_age.drop(['age_rates'], axis=1, inplace=True)
     standardised_totals = by_age.groupby(
         ["date", demographic_var]).sum().reset_index()
-    # standardised_totals = redact_small_numbers(standardised_totals)
+    standardised_totals = redact_small_numbers(standardised_totals)
     return standardised_totals
 
 
