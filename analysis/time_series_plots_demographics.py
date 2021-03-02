@@ -22,7 +22,7 @@ for disease in diseases:
         if variable == "imd":
            
             imd_column =df[variable]
-            imd_cut = pd.qcut(x=imd_column, q=5, labels=["Quintile 1", "Quintile 2", "Quintile 3", "Quintile 4", "Quintile 5"])
+            imd_cut = pd.qcut(x=imd_column, q=5, labels=["Quintile 1", "Quintile 2", "Quintile 3", "Quintile 4", "Quintile 5"], duplicates="drop")
             df['imd'] = imd_cut
 
         for x in df[variable].unique():
