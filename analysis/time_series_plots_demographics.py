@@ -1,5 +1,6 @@
 import matplotlib.pyplot as plt
 from rate_calculation_demographics import time_series, measures
+import pandas as pd
 
 diseases = ["CVD", "respiratory_disease", "cancer"]
 demographic_variables = ["region", "ethnicity", "imd"]
@@ -17,6 +18,12 @@ for disease in diseases:
     for i, variable in enumerate(demographic_variables):
         df = df_dict[variable]
         
+        #if imd qcut
+        if variable == "imd":
+           
+            imd_column =df[variable]
+            imd_cut = pd.qcut(x=imd_column, q=5, duplicates="drop")
+            df['imd'] = imd_cut
 
         for x in df[variable].unique():
             df_subset = df[df[variable] == x]
