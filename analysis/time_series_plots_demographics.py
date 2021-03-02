@@ -17,6 +17,12 @@ for disease in diseases:
     for i, variable in enumerate(demographic_variables):
         df = df_dict[variable]
         
+        #if imd qcut
+        if variable == "imd":
+           
+            imd_column =df[variable]
+            imd_cut = pd.qcut(x=imd_column, q=5, labels=["Quintile 1", "Quintile 2", "Quintile 3", "Quintile 4", "Quintile 5"])
+            df['imd'] = imd_cut
 
         for x in df[variable].unique():
             df_subset = df[df[variable] == x]
