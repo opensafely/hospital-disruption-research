@@ -30,9 +30,13 @@ def get_data():
 
 def standardise_rates_apply(by_age_row):
     row_age_group = by_age_row['AgeGroup']
-    row_standardised_rate = by_age_row['age_rates'] * \
-        standard_pop[row_age_group]
-    return row_standardised_rate
+    if row_age_group == 'missing':
+        row_standardised_rate = np.nan
+        return row_standardised_rate
+    else:
+        
+        row_standardised_rate = by_age_row['age_rates'] * standard_pop[row_age_group]
+        return row_standardised_rate
 
 
 def redact_small_numbers(df):
