@@ -20,10 +20,13 @@ for disease in diseases:
         
         #if imd qcut
         if variable == "imd":
-           
-            imd_column =df[variable]
-            imd_cut = pd.qcut(x=imd_column, q=5, duplicates="drop")
-            df['imd'] = imd_cut
+            
+            imd_column = df["imd"]
+            df["imd"] = pd.qcut(imd_column, q=5,duplicates="drop")
+        
+            df = df.groupby(by=["date", variable])["European Standard population rate per 100,000"].mean().reset_index()
+            
+            
 
         for x in df[variable].unique():
             df_subset = df[df[variable] == x]
@@ -39,7 +42,7 @@ for disease in diseases:
 
             axes[i].legend(loc=3, prop={"size": 9})
             axes[i].set_ylabel("Rate per 100,000 people")
-            axes[i].set_ylim(ymin=0)
+            axes[i].set_ylim(ymin=0, ymax=250)
             plt.tight_layout()
   
     plt.savefig(f"output/time_series_plot_{disease}.svg")
