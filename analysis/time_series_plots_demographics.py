@@ -1,6 +1,7 @@
 import matplotlib.pyplot as plt
 from rate_calculation_demographics import time_series, measures
 import pandas as pd
+import numpy as np
 
 diseases = ["CVD", "respiratory_disease", "cancer"]
 figure_cut_offs = {"CVD": 250, "respiratory_disease": 200, "cancer": 100}
