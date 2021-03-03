@@ -5,6 +5,11 @@ import pandas as pd
 diseases = ["CVD", "respiratory_disease", "cancer"]
 figure_cut_offs = {"CVD": 250, "respiratory_disease": 200, "cancer": 100}
 demographic_variables = ["region", "ethnicity", "imd"]
+ethnicity_codes = {1: "White", 2: "Mixed", 3: "Asian", 4: "Black", 5:"Other", np.nan: "unknown"}
+
+
+
+
 
 for disease in diseases:
     df_dict = time_series[disease]
@@ -27,7 +32,12 @@ for disease in diseases:
         
             df = df.groupby(by=["date", variable])["European Standard population rate per 100,000"].mean().reset_index()
             
-            
+        #if ethnicity map codes
+        if variable == "ethnicity":
+
+            ethnicity_column = df["ethnicity"]
+            df = df.replace({"ethnicity": ethnicity_codes})
+        
 
         for x in df[variable].unique():
             df_subset = df[df[variable] == x]
