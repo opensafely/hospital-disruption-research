@@ -3,6 +3,7 @@ from rate_calculation_demographics import time_series, measures
 import pandas as pd
 
 diseases = ["CVD", "respiratory_disease", "cancer"]
+figure_cut_offs = {"CVD": 250, "respiratory_disease": 200, "cancer": 100}
 demographic_variables = ["region", "ethnicity", "imd"]
 
 for disease in diseases:
@@ -40,9 +41,17 @@ for disease in diseases:
             title = f"{chr(97 + i)}) {disease} hospitalisation rates by {variable}"
             axes[i].set_title(title, loc="left")
 
-            axes[i].legend(loc=3, prop={"size": 9})
+            if variable=="imd":
+                axes[i].legend(loc=3, prop={"size": 9}, labels=["Most deprived", "", "", "","Least deprived"])
+                
+            else:
+
+                axes[i].legend(loc=3, prop={"size": 9})
             axes[i].set_ylabel("Rate per 100,000 people")
-            axes[i].set_ylim(ymin=0, ymax=250)
+            
+            axes[i].set_ylim(ymin=0, ymax=figure_cut_offs[disease])
+            
+          
             plt.tight_layout()
   
     plt.savefig(f"output/time_series_plot_{disease}.svg")
