@@ -20,11 +20,16 @@ def calculate_rates(df):
 
 
 
-def get_data():
+def get_data(demographic_var):
     p = f"output/measure_{m.id}.csv"
     by_age = pd.read_csv(
         p, usecols=["date", m.numerator, m.denominator] + m.group_by)
     by_age["date"] = pd.to_datetime(by_age["date"])
+
+    #remove people with "Missing" in demographic vars
+    by_age = by_age[by_age[demographic_var] != "Missing"]
+
+
     return by_age
 
 
@@ -48,7 +53,7 @@ def redact_small_numbers(df):
 
 
 def make_table(demographic_var):
-    by_age = get_data()
+    by_age = get_data(demographic_var)
     by_age['age_rates'] = calculate_rates(by_age)
     by_age["European Standard population rate per 100,000"] = by_age.apply(
         standardise_rates_apply, axis=1)

@@ -1,5 +1,6 @@
 import os
 import pandas as pd
+import numpy as np
 
 demographics = ["region", "imd", "ethnicity"]
 df_list = []
@@ -15,6 +16,9 @@ for file in os.listdir('output'):
 
         df_sublist = []
         for var in demographics:
+
+            var_column = df[var]
+            df[var] = df[var].replace(np.nan, "Missing")
 
             population = df.groupby(
                 ["AgeGroup", var]).size().reset_index()
