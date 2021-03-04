@@ -1,11 +1,12 @@
 import os
 import pandas as pd
+import numpy as np
 
 demographics = ["region", "imd", "ethnicity"]
 df_list = []
 for file in os.listdir('output'):
-    if file.endswith('joined'):
-        date = file.split('_')[-2][:-4]
+    if file.startswith('input_2'):
+        date = file.split('_')[-1][:-4]
 
         file_path = os.path.join('output', file)
         df = pd.read_csv(file_path)
@@ -15,6 +16,9 @@ for file in os.listdir('output'):
 
         df_sublist = []
         for var in demographics:
+
+            var_column = df[var]
+            df[var] = df[var].replace(np.nan, "Missing")
 
             population = df.groupby(
                 ["AgeGroup", var]).size().reset_index()

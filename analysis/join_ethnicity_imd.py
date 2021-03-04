@@ -11,9 +11,8 @@ for file in os.listdir('output'):
         if file.split('_')[1] != 'ethnicity':
             file_path = os.path.join('output', file)
             df = pd.read_csv(file_path)
-            print(df.shape)
             merged_df = df.merge(ethnicity_imd_df, how='left', on='patient_id')
-            print(merged_df.shape)
-            merged_df.to_csv(file_path + "_joined")
+            
+            merged_df.to_csv(file_path)
 
 

@@ -53,7 +53,7 @@ actions:
     needs: [generate_cohort_1, generate_cohort_2, generate_cohort_3, generate_cohort_4, generate_cohort_5, generate_cohort_imd_ethnicity]
     outputs:
       highly_sensitive:
-        cohort: output/input_*_joined.csv
+        cohort: output/i*.csv
    
   calculate_measures:
     run: cohortextractor:latest generate_measures --study-definition study_definition
