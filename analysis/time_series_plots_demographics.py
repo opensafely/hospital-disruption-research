@@ -4,7 +4,7 @@ import pandas as pd
 import numpy as np
 
 diseases = ["CVD", "respiratory_disease", "cancer"]
-figure_cut_offs = {"CVD": 250, "respiratory_disease": 200, "cancer": 100}
+figure_cut_offs = {"CVD": 270, "respiratory_disease": 200, "cancer": 120}
 demographic_variables = ["region", "ethnicity", "imd"]
 ethnicity_codes = {1: "White", 2: "Mixed", 3: "Asian", 4: "Black", 5:"Other", np.nan: "unknown"}
 

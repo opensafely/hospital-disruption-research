@@ -83,6 +83,7 @@ actions:
     needs: [calculate_measures_demographics]
     outputs:
       moderately_sensitive:
+        tables: output/*_rate_*.csv
         graph: output/time_series_plot_*.svg
 
 
