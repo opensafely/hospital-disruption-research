@@ -69,7 +69,7 @@ time_series = {}
 for m in measures:
     if len(m.group_by) >1:
         df = make_table(demographic_var = m.group_by[1])
-        df.to_csv(f"output/{m.id}.csv")
+        df.to_csv(f"output/{m.id}_breakdown.csv")
         if m.numerator not in time_series:
             time_series[m.numerator] = {}
             time_series[m.numerator][m.group_by[1]] = df
