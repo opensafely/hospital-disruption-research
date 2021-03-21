@@ -84,6 +84,9 @@ actions:
     outputs:
       moderately_sensitive:
         tables: output/*_rate_*_breakdown.csv
+        tables_combined: output/combined_disease_breakdown_*.csv
         graph: output/time_series_plot_*.svg
+        combined_graph: output/combined_diseases_time_series.svg
+
 
 

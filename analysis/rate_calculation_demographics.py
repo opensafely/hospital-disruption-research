@@ -63,6 +63,27 @@ def make_table(demographic_var):
     standardised_totals = redact_small_numbers(standardised_totals)
     return standardised_totals
 
+def calculate_imd_group(df, disease_column, rate_column):
+    imd_column = pd.to_numeric(df["imd"])
+    df["imd"] = pd.qcut(imd_column, q=5,duplicates="drop", labels=['1', '2', '3', '4', '5'])      
+    df_rate = df.groupby(by=["date", "imd"])[rate_column].mean().reset_index()
+    df_population = df.groupby(by=["date", "imd"])[disease_column, "population"].sum().reset_index()
+    df = df_rate.merge(df_population, on=["date", "imd"], how="inner")
+    
+    
+ 
+    group_mapping_dict = {'1': "Most deprived", '2': "Middle level", '3': "Middle level", '4': "Middle level", '5': "Least deprived"}
+    df['imd_group'] = df.apply(lambda row: group_mapping_dict[row.imd], axis=1)
+    
+    df_rate = df.groupby(by=["date", "imd_group"])[rate_column].mean().reset_index()
+
+    df_population = df.groupby(by=["date", "imd_group"])[disease_column, "population"].sum().reset_index()
+    
+    df_merged = df_rate.merge(df_population, on=["date", "imd_group"], how="inner")
+    
+    return df_merged
+
+
 
 time_series = {}
 
@@ -77,3 +98,54 @@ for m in measures:
         else:
             time_series[m.numerator][m.group_by[1]] = df
         
+
+#combine diseases
+combined_diseases = {}
+demographic_variables = ["region", "ethnicity", "imd", "sex"]
+for d in demographic_variables:
+    cvd_df = pd.read_csv(f'output/measure_CVD_rate_{d}.csv')
+    cvd_df.drop(["Unnamed: 0"], inplace=True, axis=1)
+
+    cancer_df = pd.read_csv(f'output/measure_cancer_rate_{d}.csv')
+    cancer_df.drop(["Unnamed: 0"], inplace=True, axis=1)
+
+    resp_df = pd.read_csv(f'output/measure_respiratory_disease_rate_{d}.csv')
+    resp_df.drop(["Unnamed: 0"], inplace=True, axis=1)
+
+
+    combined = cvd_df.merge(cancer_df, on=["date", d, "AgeGroup"]).merge(resp_df, on=["date", d, "AgeGroup"])
+    combined.drop(["population_x", "population_y"], inplace=True, axis=1)
+    combined['disease'] = combined['cancer'] + combined['CVD'] + combined['respiratory_disease']
+    combined.drop(['cancer', 'CVD', 'respiratory_disease'], inplace=True, axis=1)
+
+    combined["date"] = pd.to_datetime(combined["date"])
+
+    #remove people with "Missing" in demographic vars
+    combined= combined[combined[d] != "Missing"]
+    combined['age_rates'] = (combined['disease']/combined['population'])*100000
+
+    combined["European Standard population rate per 100,000"] = combined.apply(
+        standardise_rates_apply, axis=1)
+    combined.drop(['age_rates'], axis=1, inplace=True)
+    standardised_totals = combined.groupby(
+            ["date", d]).sum().reset_index()
+
+    #redact small numbers
+    mask_n = standardised_totals['disease'].isin([1, 2, 3, 4, 5])
+    mask_d = standardised_totals['population'].isin([1, 2, 3, 4, 5])
+    mask = mask_n | mask_d
+    standardised_totals.loc[mask, :] = np.nan
+    
+
+    if d =="imd":
+        standardised_totals = calculate_imd_group(standardised_totals, 'disease', "European Standard population rate per 100,000")
+        combined_diseases["imd_group"] = standardised_totals
+    else:
+        combined_diseases[d] = standardised_totals
+
+    standardised_totals.to_csv(f"output/combined_disease_breakdown_{d}.csv")
+    
+
+
+
+    
