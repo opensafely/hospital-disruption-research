@@ -99,12 +99,10 @@ for m in measures:
             time_series[m.numerator][m.group_by[1]] = df
         
 
-
 #combine diseases
-
-demographics = ["ethnicity", "imd", "region"]
-
-for d in demographics:
+combined_diseases = {}
+demographic_variables = ["region", "ethnicity", "imd", "sex"]
+for d in demographic_variables:
     cvd_df = pd.read_csv(f'output/measure_CVD_rate_{d}.csv')
     cvd_df.drop(["Unnamed: 0"], inplace=True, axis=1)
 
@@ -130,16 +128,23 @@ for d in demographics:
         standardise_rates_apply, axis=1)
     combined.drop(['age_rates'], axis=1, inplace=True)
     standardised_totals = combined.groupby(
-            ["date", "imd"]).sum().reset_index()
+            ["date", d]).sum().reset_index()
 
-    standardised_totals = redact_small_numbers(standardised_totals)
-
-    if d =="imd":
-        standardised_totals = calculate_imd_quintile(standardised_totals, 'disease', "European Standard population rate per 100,000")
+    redact small numbers
+    mask_n = standardised_totals['disease'].isin([1, 2, 3, 4, 5])
+    mask_d = standardised_totals['population'].isin([1, 2, 3, 4, 5])
+    mask = mask_n | mask_d
+    standardised_totals.loc[mask, :] = np.nan
     
 
-    standardised_totals.to_csv(f"output/combined_disease_breakdown_{d}.csv")
+    if d =="imd":
+        standardised_totals = calculate_imd_group(standardised_totals, 'disease', "European Standard population rate per 100,000")
+        combined_diseases["imd_group"] = standardised_totals
+    else:
+        combined_diseases[d] = standardised_totals
 
+    standardised_totals.to_csv(f"output/combined_disease_breakdown_{d}.csv")
+    
 
 
 

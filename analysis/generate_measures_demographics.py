@@ -2,7 +2,7 @@ import os
 import pandas as pd
 import numpy as np
 
-demographics = ["region", "imd", "ethnicity"]
+demographics = ["region", "imd", "ethnicity", "sex"]
 df_list = []
 for file in os.listdir('output'):
     if file.startswith('input_2'):

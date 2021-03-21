@@ -33,6 +33,13 @@ study = StudyDefinition(
             "incidence": 0.8}
     ),
 
+    sex=patients.sex(
+            return_expectations={
+                "rate": "universal",
+                "category": {"ratios": {"M": 0.49, "F": 0.51}},
+            }
+        ),
+
     
 
     AgeGroup=patients.categorised_as(
@@ -121,6 +128,14 @@ measures = [
         denominator="population",
         group_by=["AgeGroup", "region"],
     ),
+
+    Measure(
+        id="CVD_rate_sex",
+        numerator="CVD",
+        denominator="population",
+        group_by=["AgeGroup", "sex"],
+    ),
+
     Measure(
         id="CVD_rate_ethnicity",
         numerator="CVD",
@@ -151,6 +166,13 @@ measures = [
     ),
 
     Measure(
+        id="respiratory_disease_rate_sex",
+        numerator="respiratory_disease",
+        denominator="population",
+        group_by=["AgeGroup", "sex"],
+    ),
+
+    Measure(
         id="respiratory_disease_rate_ethnicity",
         numerator="respiratory_disease",
         denominator="population",
@@ -176,6 +198,12 @@ measures = [
         numerator="cancer",
         denominator="population",
         group_by=["AgeGroup", "region"],
+    ),
+    Measure(
+        id="cancer_rate_sex",
+        numerator="cancer",
+        denominator="population",
+        group_by=["AgeGroup", "sex"],
     ),
     Measure(
         id="cancer_rate_ethnicity",
