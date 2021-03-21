@@ -130,7 +130,7 @@ for d in demographic_variables:
     standardised_totals = combined.groupby(
             ["date", d]).sum().reset_index()
 
-    redact small numbers
+    #redact small numbers
     mask_n = standardised_totals['disease'].isin([1, 2, 3, 4, 5])
     mask_d = standardised_totals['population'].isin([1, 2, 3, 4, 5])
     mask = mask_n | mask_d
