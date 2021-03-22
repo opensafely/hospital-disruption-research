@@ -140,6 +140,12 @@ for d in demographic_variables:
     if d =="imd":
         standardised_totals = calculate_imd_group(standardised_totals, 'disease', "European Standard population rate per 100,000")
         combined_diseases["imd_group"] = standardised_totals
+
+    elif d == "sex":
+        # drop rows where sex!= "M" or "F"
+        standardised_totals = standardised_totals[standardised_totals['sex'].isin(["M", "F"])]
+        combined_diseases[d] = standardised_totals
+
     else:
         combined_diseases[d] = standardised_totals
 
