@@ -97,17 +97,17 @@ study = StudyDefinition(
         ),
     ),
     CVD=patients.admitted_to_hospital(
-        with_these_diagnoses=cvd_codelist,
+        with_these_primary_diagnoses=cvd_codelist,
         between=["index_date", "index_date + 6 days"],
         return_expectations={"incidence": 0.05},
     ),
     respiratory_disease=patients.admitted_to_hospital(
-        with_these_diagnoses=resp_codelist,
+        with_these_primary_diagnoses=resp_codelist,
         between=["index_date", "index_date + 6 days"],
         return_expectations={"incidence": 0.05},
     ),
     cancer=patients.admitted_to_hospital(
-        with_these_diagnoses=cancer_codelist,
+        with_these_primary_diagnoses=cancer_codelist,
         between=["index_date", "index_date + 6 days"],
         return_expectations={"incidence": 0.05},
     ),
