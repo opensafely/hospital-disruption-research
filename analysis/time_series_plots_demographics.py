@@ -4,7 +4,7 @@ import pandas as pd
 import numpy as np
 
 diseases = ["CVD", "respiratory_disease", "cancer"]
-figure_cut_offs = {"CVD": 270, "respiratory_disease": 200, "cancer": 130}
+figure_cut_offs = {"CVD": 50, "respiratory_disease": 80, "cancer": 90}
 demographic_variables = ["region", "ethnicity", "imd", "sex"]
 ethnicity_codes = {'1.0': "White", '2.0': "Mixed", '3.0': "Asian", '4.0': "Black", '5.0':"Other", np.nan: "unknown"}
 
@@ -18,13 +18,8 @@ for disease in diseases:
     for i, variable in enumerate(demographic_variables):
         df = df_dict[variable]
         
-        #if imd qcut
-        if variable == "imd":
-            
-            imd_column = pd.to_numeric(df["imd"])
-            df["imd"] = pd.qcut(imd_column, q=5,duplicates="drop")
-        
-            df = df.groupby(by=["date", variable])["European Standard population rate per 100,000"].mean().reset_index()
+        if variable=="imd":
+            variable="imd_group"
             
         #if ethnicity map codes
         if variable == "ethnicity":
