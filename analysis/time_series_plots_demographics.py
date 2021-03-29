@@ -18,13 +18,8 @@ for disease in diseases:
     for i, variable in enumerate(demographic_variables):
         df = df_dict[variable]
         
-        #if imd qcut
-        if variable == "imd":
-            
-            imd_column = pd.to_numeric(df["imd"])
-            df["imd"] = pd.qcut(imd_column, q=5,duplicates="drop")
-        
-            df = df.groupby(by=["date", variable])["European Standard population rate per 100,000"].mean().reset_index()
+        if variable=="imd":
+            variable="imd_group"
             
         #if ethnicity map codes
         if variable == "ethnicity":

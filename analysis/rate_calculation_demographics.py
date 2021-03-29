@@ -51,8 +51,16 @@ def redact_small_numbers(df):
     df.loc[mask, :] = np.nan
     return df
 
+def convert_imd(df, disease):
+    df = calculate_imd_group(df, disease_column=disease, rate_column="European Standard population rate per 100,000")
+    mask_n = df[disease].isin([1, 2, 3, 4, 5])
+    mask_d = df['population'].isin([1, 2, 3, 4, 5])
+    mask = mask_n | mask_d
+    df.loc[mask, :] = np.nan
 
-def make_table(demographic_var):
+    return df
+
+def make_table(demographic_var, redact=True):
     by_age = get_data(demographic_var)
     by_age['age_rates'] = calculate_rates(by_age)
     by_age["European Standard population rate per 100,000"] = by_age.apply(
@@ -60,7 +68,8 @@ def make_table(demographic_var):
     by_age.drop(['age_rates'], axis=1, inplace=True)
     standardised_totals = by_age.groupby(
         ["date", demographic_var]).sum().reset_index()
-    standardised_totals = redact_small_numbers(standardised_totals)
+    if redact:
+        standardised_totals = redact_small_numbers(standardised_totals)
     return standardised_totals
 
 def calculate_imd_group(df, disease_column, rate_column):
@@ -85,15 +94,28 @@ def calculate_imd_group(df, disease_column, rate_column):
 
 
 
+
 time_series = {}
 
 for m in measures:
     if len(m.group_by) >1:
-        df = make_table(demographic_var = m.group_by[1])
 
-        #if sex remove "U/T"
-        if m.group_by[1] == "sex":
-            df = df[df['sex'].isin(["M", "F"])]
+        if m.group_by[1] =="imd":
+            df = make_table(demographic_var = m.group_by[1], redact=False)
+            df = convert_imd(df, disease=m.numerator)
+        
+        else:
+
+
+            df = make_table(demographic_var = m.group_by[1])
+
+            #if sex remove "U/T"
+            if m.group_by[1] == "sex":
+                df = df[df['sex'].isin(["M", "F"])]
+
+        
+            
+
 
         df.to_csv(f"output/{m.id}_breakdown.csv")
         if m.numerator not in time_series:
