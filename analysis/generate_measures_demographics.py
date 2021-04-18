@@ -20,6 +20,10 @@ for file in os.listdir('output'):
             var_column = df[var]
             df[var] = df[var].replace(np.nan, "Missing")
 
+            # Missing values in ethnicity coded as 0.  Remove these
+            if var=='ethnicity':
+                df[var] = df[var].replace(0, "Missing")
+
             population = df.groupby(
                 ["AgeGroup", var]).size().reset_index()
             values = df.groupby(["AgeGroup", var]).agg(
