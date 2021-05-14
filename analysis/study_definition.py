@@ -150,14 +150,14 @@ study = StudyDefinition(
     },
     
     respiratory_elective = patients.admitted_to_hospital(
-        with_these_primary_diagnoses=respiratory_codelist,
+        with_these_primary_diagnoses=resp_codelist,
         with_admission_method=["11", "12", "13"],
         between=["index_date", "index_date + 6 days"],
         return_expectations={"incidence": 0.05},
     ),
     
     respiratory_emergency = patients.admitted_to_hospital(
-        with_these_primary_diagnoses=respiratory_codelist,
+        with_these_primary_diagnoses=resp_codelist,
         with_admission_method=["21", "22", "23", "24", "25", "2A", "2B", "2C", "2D", "28"],
         between=["index_date", "index_date + 6 days"],
         return_expectations={"incidence": 0.05},
