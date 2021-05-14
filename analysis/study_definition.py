@@ -129,6 +129,7 @@ study = StudyDefinition(
     ),
     
     return_expectations={
+        "incidence": 1,
         "category":{"ratios": {"0": 0.8, "emergency": 0.1, "elective": 0.1}}
     },
 ),
@@ -164,6 +165,7 @@ study = StudyDefinition(
     ),
     
     return_expectations={
+        "incidence": 1,
         "category":{"ratios": {"0": 0.8, "emergency": 0.1, "elective": 0.1}}
     },
 ),
@@ -200,6 +202,7 @@ study = StudyDefinition(
     ),
     
     return_expectations={
+        "incidence": 1,
         "category":{"ratios": {"0": 0.8, "emergency": 0.1, "elective": 0.1}}
     },
 ),
@@ -289,7 +292,7 @@ measures = [
         id="respiratory_disease_rate_admission_method",
         numerator="respiratory_disease",
         denominator="population",
-        group_by=["AgeGroup", "respiratory_disease_emergency_or_elective"],
+        group_by=["AgeGroup", "respiratory_emergency_or_elective"],
     ),
 
     Measure(
