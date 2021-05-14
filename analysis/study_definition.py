@@ -110,7 +110,7 @@ study = StudyDefinition(
     cvd_emergency_or_elective=patients.categorised_as(
     {
         "0": "DEFAULT",
-        "emergency": "cvd_emergency"
+        "emergency": "cvd_emergency",
         "elective": "cvd_elective"
     },
     
@@ -145,7 +145,7 @@ study = StudyDefinition(
     respiratory_emergency_or_elective=patients.categorised_as(
     {
         "0": "DEFAULT",
-        "emergency": "respiratory_emergency"
+        "emergency": "respiratory_emergency",
         "elective": "respiratory_elective"
     },
     
@@ -181,7 +181,7 @@ study = StudyDefinition(
     cancer_emergency_or_elective=patients.categorised_as(
     {
         "0": "DEFAULT",
-        "emergency": "cancer_emergency"
+        "emergency": "cancer_emergency",
         "elective": "cancer_elective"
     },
     
