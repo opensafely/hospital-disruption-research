@@ -96,18 +96,26 @@ study = StudyDefinition(
             "index_date",
         ),
     ),
+    
+    # patients admitted to hospital with primary diagnoses included in cvd codelist
+    # filters out maternity-related admissions and transfers from other providers
     CVD=patients.admitted_to_hospital(
         with_these_primary_diagnoses=cvd_codelist,
+        with_admission_method=["11", "12", "13","21", "22", "23", "24", "25", "2A", "2B", "2C", "2D", "28"],
         between=["index_date", "index_date + 6 days"],
         return_expectations={"incidence": 0.05},
     ),
+    
+    
     respiratory_disease=patients.admitted_to_hospital(
         with_these_primary_diagnoses=resp_codelist,
+        with_admission_method=["11", "12", "13","21", "22", "23", "24", "25", "2A", "2B", "2C", "2D", "28"],
         between=["index_date", "index_date + 6 days"],
         return_expectations={"incidence": 0.05},
     ),
     cancer=patients.admitted_to_hospital(
         with_these_primary_diagnoses=cancer_codelist,
+        with_admission_method=["11", "12", "13","21", "22", "23", "24", "25", "2A", "2B", "2C", "2D", "28"],
         between=["index_date", "index_date + 6 days"],
         return_expectations={"incidence": 0.05},
     ),
