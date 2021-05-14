@@ -241,7 +241,13 @@ measures = [
         denominator="population",
         group_by=["AgeGroup", "imd"],
     ),
-
+    
+    Measure(
+        id="CVD_rate_admission_method",
+        numerator="CVD",
+        denominator="population",
+        group_by=["AgeGroup", "cvd_emergency_or_elective"],
+    ),
 
 
     Measure(
@@ -278,6 +284,13 @@ measures = [
         denominator="population",
         group_by=["AgeGroup", "imd"],
     ),
+    
+    Measure(
+        id="respiratory_disease_rate_admission_method",
+        numerator="respiratory_disease",
+        denominator="population",
+        group_by=["AgeGroup", "respiratory_disease_emergency_or_elective"],
+    ),
 
     Measure(
         id="cancer_rate",
@@ -309,6 +322,13 @@ measures = [
         numerator="cancer",
         denominator="population",
         group_by=["AgeGroup", "imd"],
+    ),
+    
+    Measure(
+        id="cancer_rate_admission_method",
+        numerator="cancer",
+        denominator="population",
+        group_by=["AgeGroup", "cancer_emergency_or_elective"],
     ),
 ]
 
