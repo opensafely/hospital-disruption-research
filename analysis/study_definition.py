@@ -131,7 +131,7 @@ study = StudyDefinition(
     return_expectations={
         "category":{"ratios": {"0": 0.8, "emergency": 0.1, "elective": 0.1}}
     },
-)
+),
     
     
     
@@ -166,7 +166,7 @@ study = StudyDefinition(
     return_expectations={
         "category":{"ratios": {"0": 0.8, "emergency": 0.1, "elective": 0.1}}
     },
-)
+),
     
 
 
@@ -202,7 +202,7 @@ study = StudyDefinition(
     return_expectations={
         "category":{"ratios": {"0": 0.8, "emergency": 0.1, "elective": 0.1}}
     },
-)
+),
     
 )
 
