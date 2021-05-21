@@ -71,23 +71,23 @@ actions:
         csvs: output/measure_*_rate_*.csv
         
 
-#   standardise_and_plot:
-#     run: python:latest python analysis/time_series_plots.py
-#     needs: [calculate_measures]
-#     outputs:
-#       moderately_sensitive:
-#         tables: output/*_rate.csv
-#         graph: output/time_series_plot.svg
+  standardise_and_plot:
+    run: python:latest python analysis/time_series_plots.py
+    needs: [calculate_measures]
+    outputs:
+      moderately_sensitive:
+        tables: output/*_rate.csv
+        graph: output/time_series_plot.svg
 
-#   standardise_and_plot_demographics:
-#     run: python:latest python analysis/time_series_plots_demographics.py
-#     needs: [calculate_measures, calculate_measures_demographics]
-#     outputs:
-#       moderately_sensitive:
-#         tables: output/*_rate_*_breakdown.csv
-#         tables_combined: output/combined_disease_breakdown_*.csv
-#         graph: output/time_series_plot_*.svg
-#         combined_graph: output/combined_diseases_time_series.svg
+  standardise_and_plot_demographics:
+    run: python:latest python analysis/time_series_plots_demographics.py
+    needs: [calculate_measures, calculate_measures_demographics]
+    outputs:
+      moderately_sensitive:
+        tables: output/*_rate_*_breakdown.csv
+        tables_combined: output/combined_disease_breakdown_*.csv
+        graph: output/time_series_plot_*.svg
+        combined_graph: output/combined_diseases_time_series.svg
 
 
 
