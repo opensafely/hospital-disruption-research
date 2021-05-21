@@ -5,7 +5,7 @@ import numpy as np
 
 diseases = ["CVD", "respiratory_disease", "cancer"]
 figure_cut_offs = {"CVD": 50, "respiratory_disease": 80, "cancer": 100}
-demographic_variables = ["region", "ethnicity", "imd", "sex", "admission_method"]
+demographic_variables = ["region", "ethnicity", "imd", "sex"]
 ethnicity_codes = {'1.0': "White", '2.0': "Mixed", '3.0': "Asian", '4.0': "Black", '5.0':"Other", np.nan: "unknown"}
 
 
@@ -55,7 +55,7 @@ for disease in diseases:
   
     plt.savefig(f"output/time_series_plot_{disease}.svg")
 
-
+demographic_variables.append('admission_method')
 fig, axes = plt.subplots(len(demographic_variables), figsize=[10, 12])
 for i, variable in enumerate(demographic_variables):
     if variable=="imd":
