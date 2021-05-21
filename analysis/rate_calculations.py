@@ -1,6 +1,131 @@
 import numpy as np
 import pandas as pd
-from study_definition import measures
+from cohortextractor import Measure
+
+measures = [
+    Measure(
+        id="CVD_rate",
+        numerator="CVD",
+        denominator="population",
+        group_by=["AgeGroup"],
+    ),
+
+    Measure(
+        id="CVD_rate_region",
+        numerator="CVD",
+        denominator="population",
+        group_by=["AgeGroup", "region"],
+    ),
+
+    Measure(
+        id="CVD_rate_sex",
+        numerator="CVD",
+        denominator="population",
+        group_by=["AgeGroup", "sex"],
+    ),
+
+    Measure(
+        id="CVD_rate_ethnicity",
+        numerator="CVD",
+        denominator="population",
+        group_by=["AgeGroup", "ethnicity"],
+    ),
+    Measure(
+        id="CVD_rate_imd",
+        numerator="CVD",
+        denominator="population",
+        group_by=["AgeGroup", "imd"],
+    ),
+    
+    Measure(
+        id="CVD_rate_admission_method",
+        numerator="CVD",
+        denominator="population",
+        group_by=["AgeGroup", "cvd_emergency_or_elective"],
+    ),
+
+
+    Measure(
+        id="respiratory_disease_rate",
+        numerator="respiratory_disease",
+        denominator="population",
+        group_by=["AgeGroup"],
+    ),
+
+    Measure(
+        id="respiratory_disease_rate_region",
+        numerator="respiratory_disease",
+        denominator="population",
+        group_by=["AgeGroup", "region"],
+    ),
+
+    Measure(
+        id="respiratory_disease_rate_sex",
+        numerator="respiratory_disease",
+        denominator="population",
+        group_by=["AgeGroup", "sex"],
+    ),
+
+    Measure(
+        id="respiratory_disease_rate_ethnicity",
+        numerator="respiratory_disease",
+        denominator="population",
+        group_by=["AgeGroup", "ethnicity"],
+    ),
+
+    Measure(
+        id="respiratory_disease_rate_imd",
+        numerator="respiratory_disease",
+        denominator="population",
+        group_by=["AgeGroup", "imd"],
+    ),
+    
+    Measure(
+        id="respiratory_disease_rate_admission_method",
+        numerator="respiratory_disease",
+        denominator="population",
+        group_by=["AgeGroup", "respiratory_emergency_or_elective"],
+    ),
+
+    Measure(
+        id="cancer_rate",
+        numerator="cancer",
+        denominator="population",
+        group_by=["AgeGroup"],
+    ),
+
+    Measure(
+        id="cancer_rate_region",
+        numerator="cancer",
+        denominator="population",
+        group_by=["AgeGroup", "region"],
+    ),
+    Measure(
+        id="cancer_rate_sex",
+        numerator="cancer",
+        denominator="population",
+        group_by=["AgeGroup", "sex"],
+    ),
+    Measure(
+        id="cancer_rate_ethnicity",
+        numerator="cancer",
+        denominator="population",
+        group_by=["AgeGroup", "ethnicity"],
+    ),
+    Measure(
+        id="cancer_rate_imd",
+        numerator="cancer",
+        denominator="population",
+        group_by=["AgeGroup", "imd"],
+    ),
+    
+    Measure(
+        id="cancer_rate_admission_method",
+        numerator="cancer",
+        denominator="population",
+        group_by=["AgeGroup", "cancer_emergency_or_elective"],
+    ),
+]
 
 path = "analysis/european_standard_population.csv"
 ## European standardisation data from:

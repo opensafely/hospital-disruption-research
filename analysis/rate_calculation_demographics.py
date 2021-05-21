@@ -1,6 +1,132 @@
 import numpy as np
 import pandas as pd
-from study_definition import measures
+from cohortextractor import Measure
+
+measures = [
+    Measure(
+        id="CVD_rate",
+        numerator="CVD",
+        denominator="population",
+        group_by=["AgeGroup"],
+    ),
+
+    Measure(
+        id="CVD_rate_region",
+        numerator="CVD",
+        denominator="population",
+        group_by=["AgeGroup", "region"],
+    ),
+
+    Measure(
+        id="CVD_rate_sex",
+        numerator="CVD",
+        denominator="population",
+        group_by=["AgeGroup", "sex"],
+    ),
+
+    Measure(
+        id="CVD_rate_ethnicity",
+        numerator="CVD",
+        denominator="population",
+        group_by=["AgeGroup", "ethnicity"],
+    ),
+    Measure(
+        id="CVD_rate_imd",
+        numerator="CVD",
+        denominator="population",
+        group_by=["AgeGroup", "imd"],
+    ),
+    
+    Measure(
+        id="CVD_rate_admission_method",
+        numerator="CVD",
+        denominator="population",
+        group_by=["AgeGroup", "cvd_emergency_or_elective"],
+    ),
+
+
+    Measure(
+        id="respiratory_disease_rate",
+        numerator="respiratory_disease",
+        denominator="population",
+        group_by=["AgeGroup"],
+    ),
+
+    Measure(
+        id="respiratory_disease_rate_region",
+        numerator="respiratory_disease",
+        denominator="population",
+        group_by=["AgeGroup", "region"],
+    ),
+
+    Measure(
+        id="respiratory_disease_rate_sex",
+        numerator="respiratory_disease",
+        denominator="population",
+        group_by=["AgeGroup", "sex"],
+    ),
+
+    Measure(
+        id="respiratory_disease_rate_ethnicity",
+        numerator="respiratory_disease",
+        denominator="population",
+        group_by=["AgeGroup", "ethnicity"],
+    ),
+
+    Measure(
+        id="respiratory_disease_rate_imd",
+        numerator="respiratory_disease",
+        denominator="population",
+        group_by=["AgeGroup", "imd"],
+    ),
+    
+    Measure(
+        id="respiratory_disease_rate_admission_method",
+        numerator="respiratory_disease",
+        denominator="population",
+        group_by=["AgeGroup", "respiratory_emergency_or_elective"],
+    ),
+
+    Measure(
+        id="cancer_rate",
+        numerator="cancer",
+        denominator="population",
+        group_by=["AgeGroup"],
+    ),
+
+    Measure(
+        id="cancer_rate_region",
+        numerator="cancer",
+        denominator="population",
+        group_by=["AgeGroup", "region"],
+    ),
+    Measure(
+        id="cancer_rate_sex",
+        numerator="cancer",
+        denominator="population",
+        group_by=["AgeGroup", "sex"],
+    ),
+    Measure(
+        id="cancer_rate_ethnicity",
+        numerator="cancer",
+        denominator="population",
+        group_by=["AgeGroup", "ethnicity"],
+    ),
+    Measure(
+        id="cancer_rate_imd",
+        numerator="cancer",
+        denominator="population",
+        group_by=["AgeGroup", "imd"],
+    ),
+    
+    Measure(
+        id="cancer_rate_admission_method",
+        numerator="cancer",
+        denominator="population",
+        group_by=["AgeGroup", "cancer_emergency_or_elective"],
+    ),
+]
+
 
 path = "analysis/european_standard_population.csv"
 ## European standardisation data from:
@@ -75,8 +201,8 @@ def make_table(demographic_var, redact=True):
 def calculate_imd_group(df, disease_column, rate_column):
     imd_column = pd.to_numeric(df["imd"])
     df["imd"] = pd.qcut(imd_column, q=5,duplicates="drop", labels=['1', '2', '3', '4', '5'])      
-    df_rate = df.groupby(by=["date", "imd"])[rate_column].mean().reset_index()
-    df_population = df.groupby(by=["date", "imd"])[disease_column, "population"].sum().reset_index()
+    df_rate = df.groupby(by=["date", "imd"])[[rate_column]].mean().reset_index()
+    df_population = df.groupby(by=["date", "imd"])[[disease_column, "population"]].sum().reset_index()
     df = df_rate.merge(df_population, on=["date", "imd"], how="inner")
     
     
@@ -84,9 +210,9 @@ def calculate_imd_group(df, disease_column, rate_column):
     group_mapping_dict = {'1': "Most deprived", '2': "Middle level", '3': "Middle level", '4': "Middle level", '5': "Least deprived"}
     df['imd_group'] = df.apply(lambda row: group_mapping_dict[row.imd], axis=1)
     
-    df_rate = df.groupby(by=["date", "imd_group"])[rate_column].mean().reset_index()
+    df_rate = df.groupby(by=["date", "imd_group"])[[rate_column]].mean().reset_index()
 
-    df_population = df.groupby(by=["date", "imd_group"])[disease_column, "population"].sum().reset_index()
+    df_population = df.groupby(by=["date", "imd_group"])[[disease_column, "population"]].sum().reset_index()
     
     df_merged = df_rate.merge(df_population, on=["date", "imd_group"], how="inner")
     
@@ -131,15 +257,15 @@ combined_diseases = {}
 demographic_variables = ["region", "ethnicity", "imd", "sex", "admission_method"]
 for d in demographic_variables:
     cvd_df = pd.read_csv(f'output/measure_CVD_rate_{d}.csv')
-    cvd_df.drop(["Unnamed: 0"], inplace=True, axis=1)
+#     cvd_df.drop(["Unnamed: 0"], inplace=True, axis=1)
     cvd_df = cvd_df.rename(columns={"cvd_emergency_or_elective": "admission_method"})
 
     cancer_df = pd.read_csv(f'output/measure_cancer_rate_{d}.csv')
-    cancer_df.drop(["Unnamed: 0"], inplace=True, axis=1)
+#     cancer_df.drop(["Unnamed: 0"], inplace=True, axis=1)
     cancer_df = cancer_df.rename(columns={"cancer_emergency_or_elective": "admission_method"})
     
     resp_df = pd.read_csv(f'output/measure_respiratory_disease_rate_{d}.csv')
-    resp_df.drop(["Unnamed: 0"], inplace=True, axis=1)
+#     resp_df.drop(["Unnamed: 0"], inplace=True, axis=1)
     resp_df = resp_df.rename(columns={"respiratory_emergency_or_elective": "admission_method"})
         
     combined = cvd_df.merge(cancer_df, on=["date", d, "AgeGroup"]).merge(resp_df, on=["date", d, "AgeGroup"])
