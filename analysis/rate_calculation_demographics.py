@@ -262,7 +262,7 @@ for d in demographic_variables:
     
     if d == 'admission_method':
         population_cvd = cvd_df.groupby(by=['date'])['population'].sum().reset_index()
-        cvd_df = cvd_df[cvd_df['cvd_emergency_or_elective']!='0']
+        cvd_df = cvd_df[cvd_df['admission_method']!='0']
         cvd_df = cvd_df.drop('population', axis=1)
         cvd_df = cvd_df.merge(population_cvd, on='date')
 
@@ -272,7 +272,7 @@ for d in demographic_variables:
     
     if d == 'admission_method':
         population_cancer = cancer_df.groupby(by=['date'])['population'].sum().reset_index()
-        cancer_df = cancer_df[cancer_df['cancer_emergency_or_elective']!='0']
+        cancer_df = cancer_df[cancer_df['admission_method']!='0']
         cancer_df = cancer_df.drop('population', axis=1)
         cancer_df = cancer_df.merge(population_cancer, on='date')
     
@@ -282,7 +282,7 @@ for d in demographic_variables:
     
     if d == 'admission_method':
         population_resp = resp_df.groupby(by=['date'])['population'].sum().reset_index()
-        resp_df = resp_df[cvd_df['resp_emergency_or_elective']!='0']
+        resp_df = resp_df[cvd_df['admission_method']!='0']
         resp_df = resp_df.drop('population', axis=1)
         resp_df = resp_df.merge(population_resp, on='date')
     
