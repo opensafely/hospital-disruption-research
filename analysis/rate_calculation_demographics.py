@@ -257,17 +257,35 @@ combined_diseases = {}
 demographic_variables = ["region", "ethnicity", "imd", "sex", "admission_method"]
 for d in demographic_variables:
     cvd_df = pd.read_csv(f'output/measure_CVD_rate_{d}.csv')
-#     cvd_df.drop(["Unnamed: 0"], inplace=True, axis=1)
+    cvd_df.drop(["Unnamed: 0"], inplace=True, axis=1)
     cvd_df = cvd_df.rename(columns={"cvd_emergency_or_elective": "admission_method"})
+    
+    if d == 'admission_method':
+        population_cvd = cvd_df.groupby(by=['date'])['population'].sum().reset_index()
+        cvd_df = cvd_df[cvd_df['cvd_emergency_or_elective']!='0']
+        cvd_df = cvd_df.drop('population', axis=1)
+        cvd_df = cvd_df.merge(population_cvd, on='date')
 
     cancer_df = pd.read_csv(f'output/measure_cancer_rate_{d}.csv')
-#     cancer_df.drop(["Unnamed: 0"], inplace=True, axis=1)
+    cancer_df.drop(["Unnamed: 0"], inplace=True, axis=1)
     cancer_df = cancer_df.rename(columns={"cancer_emergency_or_elective": "admission_method"})
     
+    if d == 'admission_method':
+        population_cancer = cancer_df.groupby(by=['date'])['population'].sum().reset_index()
+        cancer_df = cancer_df[cancer_df['cancer_emergency_or_elective']!='0']
+        cancer_df = cancer_df.drop('population', axis=1)
+        cancer_df = cancer_df.merge(population_cancer, on='date')
+    
     resp_df = pd.read_csv(f'output/measure_respiratory_disease_rate_{d}.csv')
-#     resp_df.drop(["Unnamed: 0"], inplace=True, axis=1)
+    resp_df.drop(["Unnamed: 0"], inplace=True, axis=1)
     resp_df = resp_df.rename(columns={"respiratory_emergency_or_elective": "admission_method"})
-        
+    
+    if d == 'admission_method':
+        population_resp = resp_df.groupby(by=['date'])['population'].sum().reset_index()
+        resp_df = resp_df[cvd_df['resp_emergency_or_elective']!='0']
+        resp_df = resp_df.drop('population', axis=1)
+        resp_df = resp_df.merge(population_resp, on='date')
+    
     combined = cvd_df.merge(cancer_df, on=["date", d, "AgeGroup"]).merge(resp_df, on=["date", d, "AgeGroup"])
     combined.drop(["population_x", "population_y"], inplace=True, axis=1)
     combined['disease'] = combined['cancer'] + combined['CVD'] + combined['respiratory_disease']
