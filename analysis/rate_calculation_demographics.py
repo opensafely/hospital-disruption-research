@@ -282,7 +282,7 @@ for d in demographic_variables:
     
     if d == 'admission_method':
         population_resp = resp_df.groupby(by=['date'])['population'].sum().reset_index()
-        resp_df = resp_df[cvd_df['admission_method']!='0']
+        resp_df = resp_df[resp_df['admission_method']!='0']
         resp_df = resp_df.drop('population', axis=1)
         resp_df = resp_df.merge(population_resp, on='date')
     
