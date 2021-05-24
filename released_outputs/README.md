@@ -6,6 +6,7 @@
   * [output/cancer_rate_imd_breakdown.csv](output/cancer_rate_imd_breakdown.csv)
   * [output/cancer_rate_region_breakdown.csv](output/cancer_rate_region_breakdown.csv)
   * [output/cancer_rate_sex_breakdown.csv](output/cancer_rate_sex_breakdown.csv)
+  * [output/combined_disease_breakdown_admission_method.csv](output/combined_disease_breakdown_admission_method.csv)
   * [output/combined_disease_breakdown_ethnicity.csv](output/combined_disease_breakdown_ethnicity.csv)
   * [output/combined_disease_breakdown_imd.csv](output/combined_disease_breakdown_imd.csv)
   * [output/combined_disease_breakdown_region.csv](output/combined_disease_breakdown_region.csv)
