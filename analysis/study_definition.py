@@ -99,239 +99,142 @@ study = StudyDefinition(
     
     # patients admitted to hospital with primary diagnoses included in cvd codelist
     # filters out maternity-related admissions and transfers from other providers
-    CVD=patients.admitted_to_hospital(
-        with_these_primary_diagnoses=cvd_codelist,
-        with_admission_method=["11", "12", "13","21", "22", "23", "24", "25", "2A", "2B", "2C", "2D", "28"],
-        between=["index_date", "index_date + 6 days"],
-        return_expectations={"incidence": 0.05},
-    ),
-    
-    
-    cvd_emergency_or_elective=patients.categorised_as(
-    {
-        "0": "DEFAULT",
-        "emergency": "cvd_emergency",
-        "elective": "cvd_elective"
-    },
-    
-    cvd_elective = patients.admitted_to_hospital(
+    cvd_elective=patients.admitted_to_hospital(
         with_these_primary_diagnoses=cvd_codelist,
         with_admission_method=["11", "12", "13"],
         between=["index_date", "index_date + 6 days"],
         return_expectations={"incidence": 0.05},
     ),
     
-    cvd_emergency = patients.admitted_to_hospital(
+    cvd_emergency=patients.admitted_to_hospital(
         with_these_primary_diagnoses=cvd_codelist,
         with_admission_method=["21", "22", "23", "24", "25", "2A", "2B", "2C", "2D", "28"],
         between=["index_date", "index_date + 6 days"],
         return_expectations={"incidence": 0.05},
     ),
     
-    return_expectations={
-        "incidence": 1,
-        "category":{"ratios": {"0": 0.8, "emergency": 0.1, "elective": 0.1}}
-    },
-),
-    
-    
-    
-    respiratory_disease=patients.admitted_to_hospital(
-        with_these_primary_diagnoses=resp_codelist,
-        with_admission_method=["11", "12", "13","21", "22", "23", "24", "25", "2A", "2B", "2C", "2D", "28"],
-        between=["index_date", "index_date + 6 days"],
-        return_expectations={"incidence": 0.05},
+    cvd_emergency_elective=patients.satisfying(
+    """
+    cvd_elective OR
+    cvd_emergency
+    """,
     ),
     
-    respiratory_emergency_or_elective=patients.categorised_as(
-    {
-        "0": "DEFAULT",
-        "emergency": "respiratory_emergency",
-        "elective": "respiratory_elective"
-    },
-    
-    respiratory_elective = patients.admitted_to_hospital(
-        with_these_primary_diagnoses=resp_codelist,
-        with_admission_method=["11", "12", "13"],
-        between=["index_date", "index_date + 6 days"],
-        return_expectations={"incidence": 0.05},
-    ),
-    
-    respiratory_emergency = patients.admitted_to_hospital(
-        with_these_primary_diagnoses=resp_codelist,
-        with_admission_method=["21", "22", "23", "24", "25", "2A", "2B", "2C", "2D", "28"],
-        between=["index_date", "index_date + 6 days"],
-        return_expectations={"incidence": 0.05},
-    ),
-    
-    return_expectations={
-        "incidence": 1,
-        "category":{"ratios": {"0": 0.8, "emergency": 0.1, "elective": 0.1}}
-    },
-),
     
 
-
-    cancer=patients.admitted_to_hospital(
-        with_these_primary_diagnoses=cancer_codelist,
-        with_admission_method=["11", "12", "13","21", "22", "23", "24", "25", "2A", "2B", "2C", "2D", "28"],
+    respiratory_disease_elective=patients.admitted_to_hospital(
+        with_these_primary_diagnoses=resp_codelist,
+        with_admission_method=["11", "12", "13"],
         between=["index_date", "index_date + 6 days"],
         return_expectations={"incidence": 0.05},
     ),
     
+    respiratory_disease_emergency=patients.admitted_to_hospital(
+        with_these_primary_diagnoses=resp_codelist,
+        with_admission_method=["21", "22", "23", "24", "25", "2A", "2B", "2C", "2D", "28"],
+        between=["index_date", "index_date + 6 days"],
+        return_expectations={"incidence": 0.05},
+    ),
     
-    cancer_emergency_or_elective=patients.categorised_as(
-    {
-        "0": "DEFAULT",
-        "emergency": "cancer_emergency",
-        "elective": "cancer_elective"
-    },
+    respiratory_disease_emergency_elective=patients.satisfying(
+    """
+    respiratory_disease_elective OR
+    respiratory_disease_emergency
+    """,
+    ),
     
-    cancer_elective = patients.admitted_to_hospital(
+    
+    cancer_elective=patients.admitted_to_hospital(
         with_these_primary_diagnoses=cancer_codelist,
         with_admission_method=["11", "12", "13"],
         between=["index_date", "index_date + 6 days"],
         return_expectations={"incidence": 0.05},
     ),
     
-    cancer_emergency = patients.admitted_to_hospital(
+    cancer_emergency=patients.admitted_to_hospital(
         with_these_primary_diagnoses=cancer_codelist,
         with_admission_method=["21", "22", "23", "24", "25", "2A", "2B", "2C", "2D", "28"],
         between=["index_date", "index_date + 6 days"],
         return_expectations={"incidence": 0.05},
     ),
     
-    return_expectations={
-        "incidence": 1,
-        "category":{"ratios": {"0": 0.8, "emergency": 0.1, "elective": 0.1}}
-    },
-),
+    cancer_emergency_elective=patients.satisfying(
+    """
+    cancer_elective OR
+    cancer_emergency
+    """,
+    ),
+    
+    
     
 )
 
 
 measures = [
     Measure(
-        id="CVD_rate",
-        numerator="CVD",
+        id="cvd_rate_total",
+        numerator="cvd_emergency_elective",
+        denominator="population",
+        group_by=["AgeGroup"],
+    ),
+    
+    Measure(
+        id="cvd_rate_emergency",
+        numerator="cvd_emergency",
+        denominator="population",
+        group_by=["AgeGroup"],
+    ),
+    
+    Measure(
+        id="cvd_rate_elective",
+        numerator="cvd_elective",
         denominator="population",
         group_by=["AgeGroup"],
     ),
 
     Measure(
-        id="CVD_rate_region",
-        numerator="CVD",
+        id="respiratory_disease_total",
+        numerator="respiratory_disease_emergency_elective",
         denominator="population",
-        group_by=["AgeGroup", "region"],
-    ),
-
-    Measure(
-        id="CVD_rate_sex",
-        numerator="CVD",
-        denominator="population",
-        group_by=["AgeGroup", "sex"],
-    ),
-
-    Measure(
-        id="CVD_rate_ethnicity",
-        numerator="CVD",
-        denominator="population",
-        group_by=["AgeGroup", "ethnicity"],
-    ),
-    Measure(
-        id="CVD_rate_imd",
-        numerator="CVD",
-        denominator="population",
-        group_by=["AgeGroup", "imd"],
+        group_by=["AgeGroup"],
     ),
     
     Measure(
-        id="CVD_rate_admission_method",
-        numerator="CVD",
+        id="respiratory_disease_rate_emergency",
+        numerator="respiratory_disease_emergency",
         denominator="population",
-        group_by=["AgeGroup", "cvd_emergency_or_elective"],
+        group_by=["AgeGroup"],
     ),
-
-
+    
     Measure(
-        id="respiratory_disease_rate",
-        numerator="respiratory_disease",
+        id="respiratory_disease_rate_elective",
+        numerator="respiratory_disease_elective",
         denominator="population",
         group_by=["AgeGroup"],
     ),
 
     Measure(
-        id="respiratory_disease_rate_region",
-        numerator="respiratory_disease",
+        id="cancer_rate_total",
+        numerator="cancer_emergency_elective",
         denominator="population",
-        group_by=["AgeGroup", "region"],
-    ),
-
-    Measure(
-        id="respiratory_disease_rate_sex",
-        numerator="respiratory_disease",
-        denominator="population",
-        group_by=["AgeGroup", "sex"],
-    ),
-
-    Measure(
-        id="respiratory_disease_rate_ethnicity",
-        numerator="respiratory_disease",
-        denominator="population",
-        group_by=["AgeGroup", "ethnicity"],
-    ),
-
-    Measure(
-        id="respiratory_disease_rate_imd",
-        numerator="respiratory_disease",
-        denominator="population",
-        group_by=["AgeGroup", "imd"],
+        group_by=["AgeGroup"],
     ),
     
     Measure(
-        id="respiratory_disease_rate_admission_method",
-        numerator="respiratory_disease",
+        id="cancer_rate_emergency",
+        numerator="cancer_emergency",
         denominator="population",
-        group_by=["AgeGroup", "respiratory_emergency_or_elective"],
+        group_by=["AgeGroup"],
     ),
-
+    
     Measure(
-        id="cancer_rate",
-        numerator="cancer",
+        id="cancer_rate_elective",
+        numerator="cancer_elective",
         denominator="population",
         group_by=["AgeGroup"],
     ),
 
-    Measure(
-        id="cancer_rate_region",
-        numerator="cancer",
-        denominator="population",
-        group_by=["AgeGroup", "region"],
-    ),
-    Measure(
-        id="cancer_rate_sex",
-        numerator="cancer",
-        denominator="population",
-        group_by=["AgeGroup", "sex"],
-    ),
-    Measure(
-        id="cancer_rate_ethnicity",
-        numerator="cancer",
-        denominator="population",
-        group_by=["AgeGroup", "ethnicity"],
-    ),
-    Measure(
-        id="cancer_rate_imd",
-        numerator="cancer",
-        denominator="population",
-        group_by=["AgeGroup", "imd"],
-    ),
     
-    Measure(
-        id="cancer_rate_admission_method",
-        numerator="cancer",
-        denominator="population",
-        group_by=["AgeGroup", "cancer_emergency_or_elective"],
-    ),
+
 ]
 
