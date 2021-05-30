@@ -4,127 +4,70 @@ from cohortextractor import Measure
 
 measures = [
     Measure(
-        id="CVD_rate",
-        numerator="CVD",
+        id="cvd_total_rate",
+        numerator="cvd_emergency_elective",
+        denominator="population",
+        group_by=["AgeGroup"],
+    ),
+    
+    Measure(
+        id="cvd_emergency_rate",
+        numerator="cvd_emergency",
+        denominator="population",
+        group_by=["AgeGroup"],
+    ),
+    
+    Measure(
+        id="cvd_elective_rate",
+        numerator="cvd_elective",
         denominator="population",
         group_by=["AgeGroup"],
     ),
 
     Measure(
-        id="CVD_rate_region",
-        numerator="CVD",
+        id="respiratory_disease_total_rate",
+        numerator="respiratory_disease_emergency_elective",
         denominator="population",
-        group_by=["AgeGroup", "region"],
-    ),
-
-    Measure(
-        id="CVD_rate_sex",
-        numerator="CVD",
-        denominator="population",
-        group_by=["AgeGroup", "sex"],
-    ),
-
-    Measure(
-        id="CVD_rate_ethnicity",
-        numerator="CVD",
-        denominator="population",
-        group_by=["AgeGroup", "ethnicity"],
-    ),
-    Measure(
-        id="CVD_rate_imd",
-        numerator="CVD",
-        denominator="population",
-        group_by=["AgeGroup", "imd"],
+        group_by=["AgeGroup"],
     ),
     
     Measure(
-        id="CVD_rate_admission_method",
-        numerator="CVD",
+        id="respiratory_disease_emergency_rate",
+        numerator="respiratory_disease_emergency",
         denominator="population",
-        group_by=["AgeGroup", "cvd_emergency_or_elective"],
+        group_by=["AgeGroup"],
     ),
-
-
+    
     Measure(
-        id="respiratory_disease_rate",
-        numerator="respiratory_disease",
+        id="respiratory_disease_elective_rate",
+        numerator="respiratory_disease_elective",
         denominator="population",
         group_by=["AgeGroup"],
     ),
 
     Measure(
-        id="respiratory_disease_rate_region",
-        numerator="respiratory_disease",
+        id="cancer_total_rate",
+        numerator="cancer_emergency_elective",
         denominator="population",
-        group_by=["AgeGroup", "region"],
-    ),
-
-    Measure(
-        id="respiratory_disease_rate_sex",
-        numerator="respiratory_disease",
-        denominator="population",
-        group_by=["AgeGroup", "sex"],
-    ),
-
-    Measure(
-        id="respiratory_disease_rate_ethnicity",
-        numerator="respiratory_disease",
-        denominator="population",
-        group_by=["AgeGroup", "ethnicity"],
-    ),
-
-    Measure(
-        id="respiratory_disease_rate_imd",
-        numerator="respiratory_disease",
-        denominator="population",
-        group_by=["AgeGroup", "imd"],
+        group_by=["AgeGroup"],
     ),
     
     Measure(
-        id="respiratory_disease_rate_admission_method",
-        numerator="respiratory_disease",
+        id="cancer_emergency_rate",
+        numerator="cancer_emergency",
         denominator="population",
-        group_by=["AgeGroup", "respiratory_emergency_or_elective"],
+        group_by=["AgeGroup"],
     ),
-
+    
     Measure(
-        id="cancer_rate",
-        numerator="cancer",
+        id="cancer_elective_rate",
+        numerator="cancer_elective",
         denominator="population",
         group_by=["AgeGroup"],
     ),
 
-    Measure(
-        id="cancer_rate_region",
-        numerator="cancer",
-        denominator="population",
-        group_by=["AgeGroup", "region"],
-    ),
-    Measure(
-        id="cancer_rate_sex",
-        numerator="cancer",
-        denominator="population",
-        group_by=["AgeGroup", "sex"],
-    ),
-    Measure(
-        id="cancer_rate_ethnicity",
-        numerator="cancer",
-        denominator="population",
-        group_by=["AgeGroup", "ethnicity"],
-    ),
-    Measure(
-        id="cancer_rate_imd",
-        numerator="cancer",
-        denominator="population",
-        group_by=["AgeGroup", "imd"],
-    ),
     
-    Measure(
-        id="cancer_rate_admission_method",
-        numerator="cancer",
-        denominator="population",
-        group_by=["AgeGroup", "cancer_emergency_or_elective"],
-    ),
+
 ]
 
 path = "analysis/european_standard_population.csv"
@@ -178,10 +121,18 @@ def make_table():
     df = redact_small_numbers(df)
     return df
 
+time_series = {'total': [], 'elective': [], 'emergency': []}
 
-time_series = []
 for m in measures:
-    if len(m.group_by) ==1:
-        df = make_table()
-        df.to_csv(f"output/{m.id}.csv")
-        time_series.append(df.drop(columns=[m.numerator, m.denominator]))
+    df = make_table()
+    df.to_csv(f"output/{m.id}_table.csv")
+    
+    if 'total' in m.id:
+        time_series['total'].append(df.drop(columns=[m.numerator, m.denominator]))
+    
+    elif 'elective' in m.id:
+        time_series['elective'].append(df.drop(columns=[m.numerator, m.denominator]))
+    
+    elif 'emergency' in m.id:
+        time_series['emergency'].append(df.drop(columns=[m.numerator, m.denominator]))
+    
