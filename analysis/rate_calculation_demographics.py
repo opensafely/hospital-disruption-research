@@ -3,128 +3,188 @@ import pandas as pd
 from cohortextractor import Measure
 
 measures = [
+   
     Measure(
-        id="CVD_rate",
-        numerator="CVD",
-        denominator="population",
-        group_by=["AgeGroup"],
-    ),
-
-    Measure(
-        id="CVD_rate_region",
-        numerator="CVD",
-        denominator="population",
-        group_by=["AgeGroup", "region"],
-    ),
-
-    Measure(
-        id="CVD_rate_sex",
-        numerator="CVD",
+        id="cvd_rate_total_sex",
+        numerator="cvd_emergency_elective",
         denominator="population",
         group_by=["AgeGroup", "sex"],
     ),
 
     Measure(
-        id="CVD_rate_ethnicity",
-        numerator="CVD",
+        id="cvd_rate_total_ethnicity",
+        numerator="cvd_emergency_elective",
         denominator="population",
         group_by=["AgeGroup", "ethnicity"],
     ),
     Measure(
-        id="CVD_rate_imd",
-        numerator="CVD",
+        id="cvd_rate_total_imd",
+        numerator="cvd_emergency_elective",
         denominator="population",
         group_by=["AgeGroup", "imd"],
     ),
     
     Measure(
-        id="CVD_rate_admission_method",
-        numerator="CVD",
-        denominator="population",
-        group_by=["AgeGroup", "cvd_emergency_or_elective"],
-    ),
-
-
-    Measure(
-        id="respiratory_disease_rate",
-        numerator="respiratory_disease",
-        denominator="population",
-        group_by=["AgeGroup"],
-    ),
-
-    Measure(
-        id="respiratory_disease_rate_region",
-        numerator="respiratory_disease",
-        denominator="population",
-        group_by=["AgeGroup", "region"],
-    ),
-
-    Measure(
-        id="respiratory_disease_rate_sex",
-        numerator="respiratory_disease",
+        id="cvd_rate_emergency_sex",
+        numerator="cvd_emergency",
         denominator="population",
         group_by=["AgeGroup", "sex"],
     ),
 
     Measure(
-        id="respiratory_disease_rate_ethnicity",
-        numerator="respiratory_disease",
+        id="cvd_rate_emergency_ethnicity",
+        numerator="cvd_emergency",
         denominator="population",
         group_by=["AgeGroup", "ethnicity"],
     ),
-
     Measure(
-        id="respiratory_disease_rate_imd",
-        numerator="respiratory_disease",
+        id="cvd_rate_emergency_imd",
+        numerator="cvd_emergency",
         denominator="population",
         group_by=["AgeGroup", "imd"],
     ),
     
     Measure(
-        id="respiratory_disease_rate_admission_method",
-        numerator="respiratory_disease",
+        id="cvd_rate_elective_sex",
+        numerator="cvd_elective",
         denominator="population",
-        group_by=["AgeGroup", "respiratory_emergency_or_elective"],
+        group_by=["AgeGroup", "sex"],
     ),
 
     Measure(
-        id="cancer_rate",
-        numerator="cancer",
+        id="cvd_rate_elective_ethnicity",
+        numerator="cvd_elective",
         denominator="population",
-        group_by=["AgeGroup"],
+        group_by=["AgeGroup", "ethnicity"],
+    ),
+    Measure(
+        id="cvd_rate_elective_imd",
+        numerator="cvd_elective",
+        denominator="population",
+        group_by=["AgeGroup", "imd"],
     ),
 
     Measure(
-        id="cancer_rate_region",
-        numerator="cancer",
+        id="respiratory_disease_rate_total_sex",
+        numerator="respiratory_disease_emergency_elective",
         denominator="population",
-        group_by=["AgeGroup", "region"],
+        group_by=["AgeGroup", "sex"],
     ),
+
     Measure(
-        id="cancer_rate_sex",
-        numerator="cancer",
+        id="respiratory_disease_rate_total_ethnicity",
+        numerator="respiratory_disease_emergency_elective",
+        denominator="population",
+        group_by=["AgeGroup", "ethnicity"],
+    ),
+
+    Measure(
+        id="respiratory_disease_rate_total_imd",
+        numerator="respiratory_disease_emergency_elective",
+        denominator="population",
+        group_by=["AgeGroup", "imd"],
+    ),
+    
+    Measure(
+        id="respiratory_disease_rate_emergency_sex",
+        numerator="respiratory_disease_emergency",
+        denominator="population",
+        group_by=["AgeGroup", "sex"],
+    ),
+
+    Measure(
+        id="respiratory_disease_rate_emergency_ethnicity",
+        numerator="respiratory_disease_emergency",
+        denominator="population",
+        group_by=["AgeGroup", "ethnicity"],
+    ),
+
+    Measure(
+        id="respiratory_disease_rate_emergency_imd",
+        numerator="respiratory_disease_emergency",
+        denominator="population",
+        group_by=["AgeGroup", "imd"],
+    ),
+    
+    Measure(
+        id="respiratory_disease_rate_elective_sex",
+        numerator="respiratory_disease_elective",
+        denominator="population",
+        group_by=["AgeGroup", "sex"],
+    ),
+
+    Measure(
+        id="respiratory_disease_rate_elective_ethnicity",
+        numerator="respiratory_disease_elective",
+        denominator="population",
+        group_by=["AgeGroup", "ethnicity"],
+    ),
+
+    Measure(
+        id="respiratory_disease_rate_elective_imd",
+        numerator="respiratory_disease_elective",
+        denominator="population",
+        group_by=["AgeGroup", "imd"],
+    ),
+    
+
+    Measure(
+        id="cancer_rate_total_sex",
+        numerator="cancer_emergency_elective",
         denominator="population",
         group_by=["AgeGroup", "sex"],
     ),
     Measure(
-        id="cancer_rate_ethnicity",
-        numerator="cancer",
+        id="cancer_rate_total_ethnicity",
+        numerator="cancer_emergency_elective",
         denominator="population",
         group_by=["AgeGroup", "ethnicity"],
     ),
     Measure(
-        id="cancer_rate_imd",
-        numerator="cancer",
+        id="cancer_rate_total_imd",
+        numerator="cancer_emergency_elective",
         denominator="population",
         group_by=["AgeGroup", "imd"],
     ),
     
     Measure(
-        id="cancer_rate_admission_method",
-        numerator="cancer",
+        id="cancer_rate_emergency_sex",
+        numerator="cancer_emergency",
         denominator="population",
-        group_by=["AgeGroup", "cancer_emergency_or_elective"],
+        group_by=["AgeGroup", "sex"],
     ),
+    Measure(
+        id="cancer_rate_emergency_ethnicity",
+        numerator="cancer_emergency",
+        denominator="population",
+        group_by=["AgeGroup", "ethnicity"],
+    ),
+    Measure(
+        id="cancer_rate_emergency_imd",
+        numerator="cancer_emergency",
+        denominator="population",
+        group_by=["AgeGroup", "imd"],
+    ),
+    
+    Measure(
+        id="cancer_rate_elective_sex",
+        numerator="cancer_elective",
+        denominator="population",
+        group_by=["AgeGroup", "sex"],
+    ),
+    Measure(
+        id="cancer_rate_elective_ethnicity",
+        numerator="cancer_elective",
+        denominator="population",
+        group_by=["AgeGroup", "ethnicity"],
+    ),
+    Measure(
+        id="cancer_rate_elective_imd",
+        numerator="cancer_elective",
+        denominator="population",
+        group_by=["AgeGroup", "imd"],
+    ),
+   
 ]
 
 
@@ -219,12 +279,9 @@ def calculate_imd_group(df, disease_column, rate_column):
     return df_merged
 
 
-
-
 time_series = {}
 
 for m in measures:
-    if len(m.group_by) >1:
 
         if m.group_by[1] =="imd":
             df = make_table(demographic_var = m.group_by[1], redact=False)
@@ -243,7 +300,7 @@ for m in measures:
             
 
 
-        df.to_csv(f"output/{m.id}_breakdown.csv")
+        df.to_csv(f"output/{m.id}_breakdown.csv", index=False)
         if m.numerator not in time_series:
             time_series[m.numerator] = {}
             time_series[m.numerator][m.group_by[1]] = df
@@ -254,88 +311,60 @@ for m in measures:
 
 #combine diseases
 combined_diseases = {}
-demographic_variables = ["region", "ethnicity", "imd", "sex", "admission_method"]
-for d in demographic_variables:
-    cvd_df = pd.read_csv(f'output/measure_CVD_rate_{d}.csv')
+demographic_variables = ["ethnicity", "imd", "sex"]
+populations = ['total', 'emergency', 'elective']
 
-    cvd_df = cvd_df.rename(columns={"cvd_emergency_or_elective": "admission_method"})
-    
-    if d == 'admission_method':
-        population_cvd = cvd_df.groupby(by=['date', 'AgeGroup'])['population'].sum().reset_index()
-        cvd_df = cvd_df[cvd_df['admission_method']!='0']
-        cvd_df = cvd_df.drop('population', axis=1)
-        cvd_df = cvd_df.merge(population_cvd, on=['date', 'AgeGroup'])
-        cvd_df
-    
-    else:
-            cvd_df.drop(["Unnamed: 0"], inplace=True, axis=1)
-    
-    
-    cancer_df = pd.read_csv(f'output/measure_cancer_rate_{d}.csv')
-    cancer_df = cancer_df.rename(columns={"cancer_emergency_or_elective": "admission_method"})
-    
-    if d == 'admission_method':
-        population_cancer = cancer_df.groupby(by=['date', 'AgeGroup'])['population'].sum().reset_index()
-        cancer_df = cancer_df[cancer_df['admission_method']!='0']
-        cancer_df = cancer_df.drop('population', axis=1)
-        cancer_df = cancer_df.merge(population_cancer, on=['date', 'AgeGroup'])
-    
-    else:
-            cancer_df.drop(["Unnamed: 0"], inplace=True, axis=1)
-    
-    
-    resp_df = pd.read_csv(f'output/measure_respiratory_disease_rate_{d}.csv')
-    resp_df = resp_df.rename(columns={"respiratory_emergency_or_elective": "admission_method"})
-    
-    if d == 'admission_method':
-        population_resp = resp_df.groupby(by=['date', 'AgeGroup'])['population'].sum().reset_index()
-        resp_df = resp_df[resp_df['admission_method']!='0']
-        resp_df = resp_df.drop('population', axis=1)
-        resp_df = resp_df.merge(population_resp, on=['date', 'AgeGroup'])
-    
-    else:
-            resp_df.drop(["Unnamed: 0"], inplace=True, axis=1)
-    
-    
-    combined = cvd_df.merge(cancer_df, on=["date", d, "AgeGroup"]).merge(resp_df, on=["date", d, "AgeGroup"])
-    combined.drop(["population_x", "population_y"], inplace=True, axis=1)
-    combined['disease'] = combined['cancer'] + combined['CVD'] + combined['respiratory_disease']
-    combined.drop(['cancer', 'CVD', 'respiratory_disease'], inplace=True, axis=1)
+for pop in populations:
+    for d in demographic_variables:
+        cvd_df = pd.read_csv(f'output/measure_cvd_rate_{pop}_{d}.csv')
+#         cvd_df.drop(["Unnamed: 0"], inplace=True, axis=1)
+        cancer_df = pd.read_csv(f'output/measure_cancer_rate_{pop}_{d}.csv')
+#         cancer_df.drop(["Unnamed: 0"], inplace=True, axis=1)
+        resp_df = pd.read_csv(f'output/measure_respiratory_disease_rate_{pop}_{d}.csv')
+#         resp_df.drop(["Unnamed: 0"], inplace=True, axis=1)
 
-    combined["date"] = pd.to_datetime(combined["date"])
+        
+        combined = cvd_df.merge(cancer_df, on=["date", d, "AgeGroup"]).merge(resp_df, on=["date", d, "AgeGroup"])
+        combined.drop(["population_x", "population_y"], inplace=True, axis=1)
+       
+        if pop == 'total':
+            
+            combined['disease'] = combined[f'cancer_emergency_elective'] + combined[f'cvd_emergency_elective'] + combined[f'respiratory_disease_emergency_elective']
+            combined.drop(['cancer_emergency_elective', 'cvd_emergency_elective', 'respiratory_disease_emergency_elective'], inplace=True, axis=1)
+        else:
+            combined['disease'] = combined[f'cancer_{pop}'] + combined[f'cvd_{pop}'] + combined[f'respiratory_disease_{pop}']
+            combined.drop([f'cancer_{pop}', f'cvd_{pop}', f'respiratory_disease_{pop}'], inplace=True, axis=1)
+        
+        
+        combined["date"] = pd.to_datetime(combined["date"])
 
-    #remove people with "Missing" in demographic vars
-    combined= combined[combined[d] != "Missing"]
-    combined['age_rates'] = (combined['disease']/combined['population'])*100000
+        #remove people with "Missing" in demographic vars
+        combined= combined[combined[d] != "Missing"]
+        combined['age_rates'] = (combined['disease']/combined['population'])*100000
 
-    combined["European Standard population rate per 100,000"] = combined.apply(
-        standardise_rates_apply, axis=1)
-    combined.drop(['age_rates'], axis=1, inplace=True)
-    standardised_totals = combined.groupby(
-            ["date", d]).sum().reset_index()
+        combined["European Standard population rate per 100,000"] = combined.apply(
+            standardise_rates_apply, axis=1)
+        combined.drop(['age_rates'], axis=1, inplace=True)
+        standardised_totals = combined.groupby(
+                ["date", d]).sum().reset_index()
 
-    #redact small numbers
-    mask_n = standardised_totals['disease'].isin([1, 2, 3, 4, 5])
-    mask_d = standardised_totals['population'].isin([1, 2, 3, 4, 5])
-    mask = mask_n | mask_d
-    standardised_totals.loc[mask, :] = np.nan
-    
-
-    if d =="imd":
-        standardised_totals = calculate_imd_group(standardised_totals, 'disease', "European Standard population rate per 100,000")
-        combined_diseases["imd_group"] = standardised_totals
-
-    elif d == "sex":
-        # drop rows where sex!= "M" or "F"
-        standardised_totals = standardised_totals[standardised_totals['sex'].isin(["M", "F"])]
-        combined_diseases[d] = standardised_totals
-
-    else:
-        combined_diseases[d] = standardised_totals
-
-    standardised_totals.to_csv(f"output/combined_disease_breakdown_{d}.csv")
-    
+        #redact small numbers
+        mask_n = standardised_totals['disease'].isin([1, 2, 3, 4, 5])
+        mask_d = standardised_totals['population'].isin([1, 2, 3, 4, 5])
+        mask = mask_n | mask_d
+        standardised_totals.loc[mask, :] = np.nan
 
 
+        if d =="imd":
+            standardised_totals = calculate_imd_group(standardised_totals, 'disease', "European Standard population rate per 100,000")
+            combined_diseases["imd_group"] = standardised_totals
 
-    
+        elif d == "sex":
+            # drop rows where sex!= "M" or "F"
+            standardised_totals = standardised_totals[standardised_totals['sex'].isin(["M", "F"])]
+            combined_diseases[d] = standardised_totals
+
+        else:
+            combined_diseases[d] = standardised_totals
+
+        standardised_totals.to_csv(f"output/combined_disease_{pop}_{d}_table.csv")
