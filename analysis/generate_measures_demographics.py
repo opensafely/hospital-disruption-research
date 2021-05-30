@@ -58,26 +58,26 @@ for pop in populations:
         
         if pop == 'total':
             cv_df = df_combined[["AgeGroup", demographic,
-                             "cvd_emergency_elective", "population", "date"]].to_csv(f"output/measure_cvd_rate_{pop}_{demographic}.csv")
+                             "cvd_emergency_elective", "population", "date"]].to_csv(f"output/measure_cvd_rate_{pop}_{demographic}.csv", index=False)
             cancer_df = df_combined[["AgeGroup", demographic,
-                             "cancer_emergency_elective", "population", "date"]].to_csv(f"output/measure_cancer_rate_{pop}_{demographic}.csv")
+                             "cancer_emergency_elective", "population", "date"]].to_csv(f"output/measure_cancer_rate_{pop}_{demographic}.csv", index=False)
             respiratory_df = df_combined[["AgeGroup", demographic,
-                             "respiratory_disease_emergency_elective", "population", "date"]].to_csv(f"output/measure_respiratory_disease_rate_{pop}_{demographic}.csv")
+                             "respiratory_disease_emergency_elective", "population", "date"]].to_csv(f"output/measure_respiratory_disease_rate_{pop}_{demographic}.csv", index=False)
         
         
         elif pop == 'emergency':
             cv_df = df_combined[["AgeGroup", demographic,
-                             "cvd_emergency", "population", "date"]].to_csv(f"output/measure_cvd_rate_{pop}_{demographic}.csv")
+                             "cvd_emergency", "population", "date"]].to_csv(f"output/measure_cvd_rate_{pop}_{demographic}.csv", index=False)
             cancer_df = df_combined[["AgeGroup", demographic,
-                             "cancer_emergency", "population", "date"]].to_csv(f"output/measure_cancer_rate_{pop}_{demographic}.csv")
+                             "cancer_emergency", "population", "date"]].to_csv(f"output/measure_cancer_rate_{pop}_{demographic}.csv", index=False)
             respiratory_df = df_combined[["AgeGroup", demographic,
-                             "respiratory_disease_emergency", "population", "date"]].to_csv(f"output/measure_respiratory_disease_rate_{pop}_{demographic}.csv")
+                             "respiratory_disease_emergency", "population", "date"]].to_csv(f"output/measure_respiratory_disease_rate_{pop}_{demographic}.csv", index=False)
         
         
         elif pop == 'elective':
             cv_df = df_combined[["AgeGroup", demographic,
-                             "cvd_elective", "population", "date"]].to_csv(f"output/measure_cvd_rate_{pop}_{demographic}.csv")
+                             "cvd_elective", "population", "date"]].to_csv(f"output/measure_cvd_rate_{pop}_{demographic}.csv", index=False)
             cancer_df = df_combined[["AgeGroup", demographic,
-                             "cancer_elective", "population", "date"]].to_csv(f"output/measure_cancer_rate_{pop}_{demographic}.csv")
+                             "cancer_elective", "population", "date"]].to_csv(f"output/measure_cancer_rate_{pop}_{demographic}.csv", index=False)
             respiratory_df = df_combined[["AgeGroup", demographic,
-                             "respiratory_disease_elective", "population", "date"]].to_csv(f"output/measure_respiratory_disease_rate_{pop}_{demographic}.csv")
+                             "respiratory_disease_elective", "population", "date"]].to_csv(f"output/measure_respiratory_disease_rate_{pop}_{demographic}.csv", index=False)
