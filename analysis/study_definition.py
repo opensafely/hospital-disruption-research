@@ -118,6 +118,8 @@ study = StudyDefinition(
     cvd_elective OR
     cvd_emergency
     """,
+        
+        return_expectations={"incidence": 0.1},
     ),
     
     
@@ -141,6 +143,8 @@ study = StudyDefinition(
     respiratory_disease_elective OR
     respiratory_disease_emergency
     """,
+        
+        return_expectations={"incidence": 0.1},
     ),
     
     
@@ -163,6 +167,7 @@ study = StudyDefinition(
     cancer_elective OR
     cancer_emergency
     """,
+        return_expectations={"incidence": 0.1},
     ),
     
     
@@ -172,63 +177,63 @@ study = StudyDefinition(
 
 measures = [
     Measure(
-        id="cvd_rate_total",
+        id="cvd_total_rate",
         numerator="cvd_emergency_elective",
         denominator="population",
         group_by=["AgeGroup"],
     ),
     
     Measure(
-        id="cvd_rate_emergency",
+        id="cvd_emergency_rate",
         numerator="cvd_emergency",
         denominator="population",
         group_by=["AgeGroup"],
     ),
     
     Measure(
-        id="cvd_rate_elective",
+        id="cvd_elective_rate",
         numerator="cvd_elective",
         denominator="population",
         group_by=["AgeGroup"],
     ),
 
     Measure(
-        id="respiratory_disease_total",
+        id="respiratory_disease_total_rate",
         numerator="respiratory_disease_emergency_elective",
         denominator="population",
         group_by=["AgeGroup"],
     ),
     
     Measure(
-        id="respiratory_disease_rate_emergency",
+        id="respiratory_disease_emergency_rate",
         numerator="respiratory_disease_emergency",
         denominator="population",
         group_by=["AgeGroup"],
     ),
     
     Measure(
-        id="respiratory_disease_rate_elective",
+        id="respiratory_disease_elective_rate",
         numerator="respiratory_disease_elective",
         denominator="population",
         group_by=["AgeGroup"],
     ),
 
     Measure(
-        id="cancer_rate_total",
+        id="cancer_total_rate",
         numerator="cancer_emergency_elective",
         denominator="population",
         group_by=["AgeGroup"],
     ),
     
     Measure(
-        id="cancer_rate_emergency",
+        id="cancer_emergency_rate",
         numerator="cancer_emergency",
         denominator="population",
         group_by=["AgeGroup"],
     ),
     
     Measure(
-        id="cancer_rate_elective",
+        id="cancer_elective_rate",
         numerator="cancer_elective",
         denominator="population",
         group_by=["AgeGroup"],
