@@ -1,101 +1,50 @@
 import matplotlib.pyplot as plt
-from rate_calculation_demographics import time_series, measures, combined_diseases
+from rate_calculation_demographics import combined_diseases
 import pandas as pd
 import numpy as np
 
-diseases = ["cvd", "respiratory_disease", "cancer"]
+
 populations = ['total', 'emergency', 'elective']
-figure_cut_offs = {"cvd": 50, "respiratory_disease": 80, "cancer": 100}
-demographic_variables = ["ethnicity", "imd", "sex"]
+demographic_variables = ["ethnicity", "imd_group", "sex"]
 ethnicity_codes = {'1.0': "White", '2.0': "Mixed", '3.0': "Asian", '4.0': "Black", '5.0':"Other", np.nan: "unknown"}
 
-
-# for i, disease in enumerate(diseases):
-#     for pop in populations:
-#     df_dict = time_series[pop][i]
+for pop in populations:
+    df_dict = combined_diseases[pop]
     
-    
+    fig, axes = plt.subplots(len(demographic_variables), figsize=[10, 12])
 
-#     fig, axes = plt.subplots(len(demographic_variables), figsize=[10, 12])
-
-#     for i, variable in enumerate(demographic_variables):
-#         df = df_dict[variable]
+    for i, variable in enumerate(demographic_variables):
+        df = df_dict[variable]
         
-#         if variable=="imd":
-#             variable="imd_group"
             
-#         #if ethnicity map codes
-#         if variable == "ethnicity":
+        #if ethnicity map codes
+        if variable == "ethnicity":
 
-#             ethnicity_column = df["ethnicity"]
-#             df = df.replace({"ethnicity": ethnicity_codes})
+            ethnicity_column = df["ethnicity"]
+            df = df.replace({"ethnicity": ethnicity_codes})
         
 
-#         for x in df[variable].unique():
-#             df_subset = df[df[variable] == x]
-#             df_subset = df_subset.sort_values(by="date")
+        for x in df[variable].unique():
+            df_subset = df[df[variable] == x]
+            df_subset = df_subset.sort_values(by="date")
            
 
-#             axes[i].plot(
-#                 df_subset["date"], df_subset["European Standard population rate per 100,000"], label=x)
-#             axes[i].grid(which="both", axis="y", color="#666666",
-#                         linestyle="-", alpha=0.2)
-#             title = f"{chr(97 + i)}) {disease} hospitalisation rates by {variable}"
-#             axes[i].set_title(title, loc="left")
+            axes[i].plot(
+                df_subset["date"], df_subset["European Standard population rate per 100,000"], label=x)
+            axes[i].grid(which="both", axis="y", color="#666666",
+                        linestyle="-", alpha=0.2)
+            title = f"{chr(97 + i)}) cvd/resp/cancer hospitalisation rates by {variable}"
+            axes[i].set_title(title, loc="left")
 
-#             if variable=="imd":
-#                 axes[i].legend(loc=3, prop={"size": 9}, labels=["Most deprived", "", "", "","Least deprived"])
-                
-#             else:
-
-#                 axes[i].legend(loc=3, prop={"size": 9})
-#             axes[i].set_ylabel("Rate per 100,000 people")
             
+        
+
+            axes[i].legend(loc=3, prop={"size": 9})
+            axes[i].set_ylabel("Rate per 100,000 people")
+            axes[i].set_ylim(ymin=0)
 #             axes[i].set_ylim(ymin=0, ymax=figure_cut_offs[disease])
             
           
-#             plt.tight_layout()
+            plt.tight_layout()
   
-#     plt.savefig(f"output/time_series_plot_{disease}.svg")
-
-# demographic_variables.append('admission_method')
-# fig, axes = plt.subplots(len(demographic_variables), figsize=[10, 12])
-# for i, variable in enumerate(demographic_variables):
-#     if variable=="imd":
-#         variable="imd_group"
-#     df = combined_diseases[variable]
-    
-
-    
-
-            
-#     #if ethnicity map codes
-#     if variable == "ethnicity":
-
-#         ethnicity_column = df["ethnicity"]
-#         df = df.replace({"ethnicity": ethnicity_codes})
-    
-    
-#     for x in df[variable].unique():
-#         df_subset = df[df[variable] == x]
-#         df_subset = df_subset.sort_values(by="date")
-        
-
-#         axes[i].plot(
-#             df_subset["date"], df_subset["European Standard population rate per 100,000"], label=x)
-#         axes[i].grid(which="both", axis="y", color="#666666",
-#                     linestyle="-", alpha=0.2)
-#         title = f"{chr(97 + i)}) Combined diseases hospitalisation rates by {variable}"
-#         axes[i].set_title(title, loc="left")
-
-        
-#         axes[i].legend(loc=3, prop={"size": 9})
-#         axes[i].set_ylabel("Rate per 100,000 people")
-        
-#         # axes[i].set_ylim(ymin=0, ymax=figure_cut_offs[disease])
-        
-        
-#         plt.tight_layout()
-  
-# plt.savefig(f"output/combined_diseases_time_series.svg")
-
+    plt.savefig(f"output/{pop}_combined_diseases_time_series_plot.svg")

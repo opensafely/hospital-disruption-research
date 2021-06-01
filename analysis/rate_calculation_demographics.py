@@ -279,7 +279,6 @@ def calculate_imd_group(df, disease_column, rate_column):
     return df_merged
 
 
-time_series = {}
 
 for m in measures:
 
@@ -301,16 +300,11 @@ for m in measures:
 
 
         df.to_csv(f"output/{m.id}_breakdown.csv", index=False)
-        if m.numerator not in time_series:
-            time_series[m.numerator] = {}
-            time_series[m.numerator][m.group_by[1]] = df
-        
-        else:
-            time_series[m.numerator][m.group_by[1]] = df
+    
         
 
 #combine diseases
-combined_diseases = {}
+combined_diseases = {'total': {}, 'emergency': {}, 'elective': {}}
 demographic_variables = ["ethnicity", "imd", "sex"]
 populations = ['total', 'emergency', 'elective']
 
@@ -357,14 +351,14 @@ for pop in populations:
 
         if d =="imd":
             standardised_totals = calculate_imd_group(standardised_totals, 'disease', "European Standard population rate per 100,000")
-            combined_diseases["imd_group"] = standardised_totals
+            combined_diseases[pop]["imd_group"] = standardised_totals
 
         elif d == "sex":
             # drop rows where sex!= "M" or "F"
             standardised_totals = standardised_totals[standardised_totals['sex'].isin(["M", "F"])]
-            combined_diseases[d] = standardised_totals
+            combined_diseases[pop][d] = standardised_totals
 
         else:
-            combined_diseases[d] = standardised_totals
+            combined_diseases[pop][d] = standardised_totals
 
         standardised_totals.to_csv(f"output/combined_disease_{pop}_{d}_table.csv")
