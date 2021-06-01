@@ -5,5 +5,4 @@ __pycache__
 .python-version
 output/*
 metadata/*
-*.ipynb
 .DS_Store
