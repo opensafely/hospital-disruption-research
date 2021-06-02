@@ -12,6 +12,11 @@ actions:
       highly_sensitive:
         cohort: output/input_imd_ethnicity.csv
   
+  generate_test_cohort:
+    run: cohortextractor:latest generate_cohort --study-definition study_definition_check
+    outputs:
+      highly_sensitive:
+        cohort: output/input_check.csv
 
   generate_cohort_1:
     # week 1 2019 to 21 2019 inclusive
