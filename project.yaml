@@ -101,7 +101,7 @@ actions:
       moderately_sensitive:
         notebook: output/investigate_discrepancies.html
         
-  generate_notebook:
+  generate_notebook_admission_method:
     run: jupyter:latest jupyter nbconvert /workspace/analysis/investigate_admission_method.ipynb --execute --to html --template basic --output-dir=/workspace/output --ExecutePreprocessor.timeout=86400 --no-input
     needs: [join_ethnicity_imd]
     outputs:
