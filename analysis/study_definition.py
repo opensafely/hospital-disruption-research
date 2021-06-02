@@ -99,75 +99,167 @@ study = StudyDefinition(
     
     # patients admitted to hospital with primary diagnoses included in cvd codelist
     # filters out maternity-related admissions and transfers from other providers
-    cvd_elective=patients.admitted_to_hospital(
+    cvd_emergency_elective = patients.admitted_to_hospital(
         with_these_primary_diagnoses=cvd_codelist,
-        with_admission_method=["11", "12", "13"],
+        with_admission_method=["11", "12", "13", "21", "22", "23", "24", "25", "2A", "2B", "2C", "2D", "28"],
         between=["index_date", "index_date + 6 days"],
-        return_expectations={"incidence": 0.05},
-    ),
-    
-    cvd_emergency=patients.admitted_to_hospital(
-        with_these_primary_diagnoses=cvd_codelist,
-        with_admission_method=["21", "22", "23", "24", "25", "2A", "2B", "2C", "2D", "28"],
-        between=["index_date", "index_date + 6 days"],
-        return_expectations={"incidence": 0.05},
-    ),
-    
-    cvd_emergency_elective=patients.satisfying(
-    """
-    cvd_elective OR
-    cvd_emergency
-    """,
-        
         return_expectations={"incidence": 0.1},
+    ),
+    
+    cvd_admission_method = patients.admitted_to_hospital(
+        with_these_primary_diagnoses=cvd_codelist,
+        with_admission_method=["11", "12", "13", "21", "22", "23", "24", "25", "2A", "2B", "2C", "2D", "28"],
+        between=["index_date", "index_date + 6 days"],
+        returning="admission_method",
+        return_expectations={"incidence": 0.1,
+                             "category": {"ratios": {
+                                 "11": 0.1,
+                                 "12": 0.1,
+                                 "13": 0.1,
+                                 "21": 0.1,
+                                 "22": 0.1,
+                                 "23": 0.1,
+                                 "24": 0.1,
+                                 "25": 0.1,
+                                 "2A": 0.1,
+                                 "2B": 0.1
+                             }}
+                            },
+    ),
+    
+    cvd_elective=patients.satisfying(
+    """
+    cvd_admission_method = "11" OR
+    cvd_admission_method = "12" OR
+    cvd_admission_method = "13"
+    """,
+        return_expectations={"incidence": 0.05},
+    ),
+    
+    cvd_emergency = patients.satisfying(
+    """
+    cvd_admission_method = "21" OR
+    cvd_admission_method = "22" OR
+    cvd_admission_method = "23" OR
+    cvd_admission_method = "24" OR
+    cvd_admission_method = "25" OR
+    cvd_admission_method = "2A" OR
+    cvd_admission_method = "2B" OR
+    cvd_admission_method = "2C" OR
+    cvd_admission_method = "2D" OR
+    cvd_admission_method = "28"
+    """,
+        return_expectations={"incidence": 0.05},
     ),
     
     
 
-    respiratory_disease_elective=patients.admitted_to_hospital(
+    respiratory_disease_emergency_elective = patients.admitted_to_hospital(
         with_these_primary_diagnoses=resp_codelist,
-        with_admission_method=["11", "12", "13"],
+        with_admission_method=["11", "12", "13", "21", "22", "23", "24", "25", "2A", "2B", "2C", "2D", "28"],
         between=["index_date", "index_date + 6 days"],
-        return_expectations={"incidence": 0.05},
-    ),
-    
-    respiratory_disease_emergency=patients.admitted_to_hospital(
-        with_these_primary_diagnoses=resp_codelist,
-        with_admission_method=["21", "22", "23", "24", "25", "2A", "2B", "2C", "2D", "28"],
-        between=["index_date", "index_date + 6 days"],
-        return_expectations={"incidence": 0.05},
-    ),
-    
-    respiratory_disease_emergency_elective=patients.satisfying(
-    """
-    respiratory_disease_elective OR
-    respiratory_disease_emergency
-    """,
-        
         return_expectations={"incidence": 0.1},
     ),
     
-    
-    cancer_elective=patients.admitted_to_hospital(
-        with_these_primary_diagnoses=cancer_codelist,
-        with_admission_method=["11", "12", "13"],
+    respiratory_disease_admission_method = patients.admitted_to_hospital(
+        with_these_primary_diagnoses=resp_codelist,
+        with_admission_method=["11", "12", "13", "21", "22", "23", "24", "25", "2A", "2B", "2C", "2D", "28"],
         between=["index_date", "index_date + 6 days"],
-        return_expectations={"incidence": 0.05},
+        returning="admission_method",
+        return_expectations={"incidence": 0.1,
+                             "category": {"ratios": {
+                                 "11": 0.1,
+                                 "12": 0.1,
+                                 "13": 0.1,
+                                 "21": 0.1,
+                                 "22": 0.1,
+                                 "23": 0.1,
+                                 "24": 0.1,
+                                 "25": 0.1,
+                                 "2A": 0.1,
+                                 "2B": 0.1
+                             }}
+                            },
     ),
     
-    cancer_emergency=patients.admitted_to_hospital(
-        with_these_primary_diagnoses=cancer_codelist,
-        with_admission_method=["21", "22", "23", "24", "25", "2A", "2B", "2C", "2D", "28"],
-        between=["index_date", "index_date + 6 days"],
-        return_expectations={"incidence": 0.05},
-    ),
-    
-    cancer_emergency_elective=patients.satisfying(
+    respiratory_disease_elective=patients.satisfying(
     """
-    cancer_elective OR
-    cancer_emergency
+    respiratory_disease_admission_method = "11" OR
+    respiratory_disease_admission_method = "12" OR
+    respiratory_disease_admission_method = "13"
     """,
+        return_expectations={"incidence": 0.05},
+    ),
+    
+    respiratory_disease_emergency = patients.satisfying(
+    """
+    respiratory_disease_admission_method = "21" OR
+    respiratory_disease_admission_method = "22" OR
+    respiratory_disease_admission_method = "23" OR
+    respiratory_disease_admission_method = "24" OR
+    respiratory_disease_admission_method = "25" OR
+    respiratory_disease_admission_method = "2A" OR
+    respiratory_disease_admission_method = "2B" OR
+    respiratory_disease_admission_method = "2C" OR
+    respiratory_disease_admission_method = "2D" OR
+    respiratory_disease_admission_method = "28"
+    """,
+        return_expectations={"incidence": 0.05},
+    ),
+    
+    
+    
+    cancer_emergency_elective = patients.admitted_to_hospital(
+        with_these_primary_diagnoses=cancer_codelist,
+        with_admission_method=["11", "12", "13", "21", "22", "23", "24", "25", "2A", "2B", "2C", "2D", "28"],
+        between=["index_date", "index_date + 6 days"],
         return_expectations={"incidence": 0.1},
+    ),
+    
+    cancer_admission_method = patients.admitted_to_hospital(
+        with_these_primary_diagnoses=cancer_codelist,
+        with_admission_method=["11", "12", "13", "21", "22", "23", "24", "25", "2A", "2B", "2C", "2D", "28"],
+        between=["index_date", "index_date + 6 days"],
+        returning="admission_method",
+        return_expectations={"incidence": 0.1,
+                             "category": {"ratios": {
+                                 "11": 0.1,
+                                 "12": 0.1,
+                                 "13": 0.1,
+                                 "21": 0.1,
+                                 "22": 0.1,
+                                 "23": 0.1,
+                                 "24": 0.1,
+                                 "25": 0.1,
+                                 "2A": 0.1,
+                                 "2B": 0.1
+                             }}
+                            },
+    ),
+    
+    cancer_elective=patients.satisfying(
+    """
+    cancer_admission_method = "11" OR
+    cancer_admission_method = "12" OR
+    cancer_admission_method = "13"
+    """,
+        return_expectations={"incidence": 0.05},
+    ),
+    
+    cancer_emergency = patients.satisfying(
+    """
+    cancer_admission_method = "21" OR
+    cancer_admission_method = "22" OR
+    cancer_admission_method = "23" OR
+    cancer_admission_method = "24" OR
+    cancer_admission_method = "25" OR
+    cancer_admission_method = "2A" OR
+    cancer_admission_method = "2B" OR
+    cancer_admission_method = "2C" OR
+    cancer_admission_method = "2D" OR
+    cancer_admission_method = "28"
+    """,
+        return_expectations={"incidence": 0.05},
     ),
     
     
