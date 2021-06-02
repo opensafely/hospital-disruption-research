@@ -12,6 +12,11 @@ actions:
       highly_sensitive:
         cohort: output/input_imd_ethnicity.csv
   
+  generate_test_cohort:
+    run: cohortextractor:latest generate_cohort --study-definition study_definition_check
+    outputs:
+      highly_sensitive:
+        cohort: output/input_check.csv
 
   generate_cohort_1:
     # week 1 2019 to 21 2019 inclusive
@@ -95,5 +100,13 @@ actions:
     outputs:
       moderately_sensitive:
         notebook: output/investigate_discrepancies.html
+        
+  generate_notebook_admission_method:
+    run: jupyter:latest jupyter nbconvert /workspace/analysis/investigate_admission_method.ipynb --execute --to html --template basic --output-dir=/workspace/output --ExecutePreprocessor.timeout=86400 --no-input
+    needs: [join_ethnicity_imd]
+    outputs:
+      moderately_sensitive:
+        notebook: output/investigate_admission_method.html
+
 
 
