@@ -66,8 +66,7 @@ actions:
     outputs:
       moderately_sensitive:
         measure: output/measure_*_rate.csv
-        measure_admission_method: output/measure_*_rate_admission_method.csv
-
+        
   calculate_measures_demographics:
     run: python:latest python analysis/generate_measures_demographics.py
     needs: [join_ethnicity_imd]
