@@ -80,7 +80,7 @@ actions:
     needs: [calculate_measures]
     outputs:
       moderately_sensitive:
-        tables: output/*_rate.csv
+        tables: output/*_rate_table.csv
         graph: output/time_series_plot.svg
 
   standardise_and_plot_demographics:
