@@ -88,7 +88,7 @@ actions:
     needs: [calculate_measures, calculate_measures_demographics]
     outputs:
       moderately_sensitive:
-        tables: output/*_rate_breakdown.csv
+        tables: output/*_breakdown.csv
         tables_combined: output/combined_disease_*_table.csv
         combined_graph: output/*_combined_diseases_time_series_plot.svg
 
