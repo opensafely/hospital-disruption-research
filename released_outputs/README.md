@@ -21,5 +21,4 @@
   * [output/formatted_output_elective_hospitalisations.xlsx](output/formatted_output_elective_hospitalisations.xlsx)
   * [output/respiratory_disease_elective_rate_table.csv](output/respiratory_disease_elective_rate_table.csv)
   * [output/respiratory_disease_emergency_rate_table.csv](output/respiratory_disease_emergency_rate_table.csv)
-  (output/respiratory_disease_rate_sex_breakdown.csv)
   * [output/respiratory_disease_total_rate_table.csv](output/respiratory_disease_total_rate_table.csv)
