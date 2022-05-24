@@ -1,16 +1,13 @@
-# OpenSAFELY Research Template
+# Impact of first UK COVID-19 lockdown on hospital admissions: Interrupted time series study of 32 million people
 
-This is a template repository for making new OpenSAFELY resarch projects.
+This is the code and configuration for the OpenSAFELY analysis in the paper.
 
-# _title goes here_
-
-This is the code and configuration for our paper, _name goes here_
-
-* The paper is [here]()
+* The published peer-reviewed paper is available in the [eClinicalMedicine](https://doi.org/10.1016/j.eclinm.2022.101462)
 * Raw model outputs, including charts, crosstabs, etc, are in `released_outputs/`
 * If you are interested in how we defined our variables, take a look at the [study definition](analysis/study_definition.py); this is written in `python`, but non-programmers should be able to understand what is going on there
 * If you are interested in how we defined our code lists, look in the [codelists folder](./codelists/).
-* Developers and epidemiologists interested in the framework should review [the OpenSAFELY documentation](https://docs.opensafely.org)
+* Developers and epidemiologists interested in the framework should review [the OpenSAFELY documentation](https://docs.opensafely.org).
+* The preprint version of the paper is available [here](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3970709)
 
 # About the OpenSAFELY framework
 
